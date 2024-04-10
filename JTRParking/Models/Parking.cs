@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JTRParking.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,9 @@ namespace JTRParking.Models
         public ulong CreatedBy { get; set; }
         public ulong? ModifiedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
-    }
+
+
+ 
+}
 }
 

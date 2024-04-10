@@ -37,7 +37,7 @@ namespace JTRParking.Database
 
 
 
-            DateTime now = DateTime.Now;
+ 
             modelBuilder.Entity<Parking>().HasData(
 
                 new Parking
@@ -46,7 +46,7 @@ namespace JTRParking.Database
                     VehicleType = "Car",
                     DriverName = "Hassan",
                     DriverMobile = "+15485949548",
-                    Barcode = now.ToString("yyyyMMddHHmmss") + 1,
+                    Barcode = DateTime.Now.ToString("yyyyMMddHHmmss") + 1,
                     InTime = DateTime.Now,
                     Amount = 0,
                     Status = Models.Parking.ParkingStatus.PENDING,
@@ -59,7 +59,7 @@ namespace JTRParking.Database
                     VehicleType = "Motor",
                     DriverName = "Hassan",
                     DriverMobile = "+164598756",
-                    Barcode = now.ToString("yyyyMMddHHmmss") + 1,
+                    Barcode = DateTime.Now.AddHours(5).ToString("yyyyMMddHHmmss") + 1,
                     InTime = DateTime.Now.AddHours(5),
                     Amount = 0,
                     Status = Models.Parking.ParkingStatus.PENDING,

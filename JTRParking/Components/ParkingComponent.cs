@@ -19,10 +19,12 @@ using JTRParking.Classes;
 
 namespace JTRParking.Components
 {
-    public partial class Parking : UserControl
+    public partial class ParkingComponent : UserControl
     {
         public Models.User CurrentUser;
-        public Parking()
+        private Models.Parking CurrentParking;
+
+        public ParkingComponent()
         {
             InitializeComponent();
         }
@@ -38,10 +40,9 @@ namespace JTRParking.Components
             using (var context = new JTRDbContext())
             {
                 DateTime now = DateTime.Now;
-
-                context.Parkings.Add(new Models.Parking
+                CurrentParking = new Models.Parking
                 {
-                    VehicleType = combo_vehicle_type.SelectedText,
+                    VehicleType = combo_vehicle_type.SelectedItem.ToString(),
                     DriverName = txt_driver_name.Text,
                     DriverMobile = txt_driver_phone.Text,
                     Barcode = now.ToString("yyyyMMddHHmmss") + AppSingleton.Instance.current_user.Id.ToString(),
@@ -51,11 +52,13 @@ namespace JTRParking.Components
                     Status = Models.Parking.ParkingStatus.PENDING,
                     CreatedBy = (ulong)AppSingleton.Instance.current_user.Id,
                     CreatedAt = DateTime.Now,
-                });
+                };
 
+                context.Parkings.Add(CurrentParking);
+                context.SaveChanges();
             }
-            MessageBox.Show("Parking Successfully Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            OnParkingAdded(CurrentParking);
+        
 
 
         }
@@ -64,5 +67,14 @@ namespace JTRParking.Components
         {
 
         }
+
+
+        public event EventHandler<Parking> ParkingAdded;
+        private void OnParkingAdded(Parking parking)
+        {
+            ParkingAdded?.Invoke(this, CurrentParking);
+        }
+
+
     }
 }

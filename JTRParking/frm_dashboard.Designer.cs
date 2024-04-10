@@ -1,4 +1,6 @@
-﻿namespace JTRParking
+﻿using MaterialSkin.Controls;
+
+namespace JTRParking
 {
     partial class frm_dashboard
     {
@@ -30,18 +32,23 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dashboard));
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "", "Car", "Hassan" }, -1);
             imageList1 = new ImageList(components);
-            materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            materialTabControl1 = new MaterialTabControl();
             tab_home = new TabPage();
-            materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            groupBox4 = new GroupBox();
+            txt_barcode = new MaterialTextBox2();
+            materialButton3 = new MaterialButton();
+            lbl_welcome_user = new MaterialLabel();
+            myListView = new ListView();
+            contextMenuStrip1 = new MaterialContextMenuStrip();
+            testToolStripMenuItem = new ToolStripMenuItem();
+            testToolStripMenuItem1 = new ToolStripMenuItem();
+            parking_imageList = new ImageList(components);
             groupBox1 = new GroupBox();
-            button1 = new Button();
-            parking1 = new Components.Parking();
-            lbl_welcome_user = new Label();
+            parking1 = new Components.ParkingComponent();
             tab_history = new TabPage();
-            materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            lv_parking_history = new MaterialSkin.Controls.MaterialListView();
+            materialButton2 = new MaterialButton();
+            lv_parking_history = new MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
@@ -56,18 +63,20 @@
             label4 = new Label();
             tab_settings = new TabPage();
             groupBox3 = new GroupBox();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            materialButton1 = new MaterialButton();
             groupBox2 = new GroupBox();
             label3 = new Label();
-            txt_settings_currency_symbol = new MaterialSkin.Controls.MaterialTextBox2();
+            txt_settings_currency_symbol = new MaterialTextBox2();
             label2 = new Label();
-            txt_settings_hourly_rate = new MaterialSkin.Controls.MaterialTextBox2();
+            txt_settings_hourly_rate = new MaterialTextBox2();
             label1 = new Label();
-            txt_settings_first_hour_rate = new MaterialSkin.Controls.MaterialTextBox2();
-            btn_update_settings = new MaterialSkin.Controls.MaterialButton();
+            txt_settings_first_hour_rate = new MaterialTextBox2();
+            btn_update_settings = new MaterialButton();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             materialTabControl1.SuspendLayout();
             tab_home.SuspendLayout();
+            groupBox4.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             tab_history.SuspendLayout();
             tab_settings.SuspendLayout();
@@ -80,11 +89,13 @@
             imageList1.ColorDepth = ColorDepth.Depth32Bit;
             imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "settings.png");
-            imageList1.Images.SetKeyName(1, "home.png");
+            imageList1.Images.SetKeyName(0, "home.png");
+            imageList1.Images.SetKeyName(1, "history.png");
+            imageList1.Images.SetKeyName(2, "settings.png");
             // 
             // materialTabControl1
             // 
+            materialTabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             materialTabControl1.Controls.Add(tab_home);
             materialTabControl1.Controls.Add(tab_history);
             materialTabControl1.Controls.Add(tab_settings);
@@ -96,83 +107,175 @@
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1462, 835);
+            materialTabControl1.Size = new Size(1537, 866);
             materialTabControl1.TabIndex = 1;
             // 
             // tab_home
             // 
             tab_home.BackColor = Color.White;
-            tab_home.Controls.Add(materialListView1);
-            tab_home.Controls.Add(groupBox1);
+            tab_home.Controls.Add(groupBox4);
+            tab_home.Controls.Add(materialButton3);
             tab_home.Controls.Add(lbl_welcome_user);
+            tab_home.Controls.Add(myListView);
+            tab_home.Controls.Add(groupBox1);
             tab_home.ImageKey = "home.png";
             tab_home.Location = new Point(4, 39);
             tab_home.Margin = new Padding(2);
             tab_home.Name = "tab_home";
             tab_home.Padding = new Padding(2);
-            tab_home.Size = new Size(1454, 792);
+            tab_home.Size = new Size(1529, 823);
             tab_home.TabIndex = 0;
             tab_home.Text = "Home";
             // 
-            // materialListView1
+            // groupBox4
             // 
-            materialListView1.AutoSizeTable = false;
-            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView1.BorderStyle = BorderStyle.None;
-            materialListView1.Depth = 0;
-            materialListView1.FullRowSelect = true;
-            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem1 });
-            materialListView1.Location = new Point(695, 84);
-            materialListView1.MinimumSize = new Size(200, 100);
-            materialListView1.MouseLocation = new Point(-1, -1);
-            materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            materialListView1.Name = "materialListView1";
-            materialListView1.OwnerDraw = true;
-            materialListView1.Size = new Size(727, 559);
-            materialListView1.TabIndex = 4;
-            materialListView1.UseCompatibleStateImageBehavior = false;
-            materialListView1.View = View.Details;
-            materialListView1.SelectedIndexChanged += materialListView1_SelectedIndexChanged;
+            groupBox4.Controls.Add(txt_barcode);
+            groupBox4.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox4.Location = new Point(89, 76);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(545, 108);
+            groupBox4.TabIndex = 26;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Find Vehicle";
             // 
-            // groupBox1
+            // txt_barcode
             // 
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(parking1);
-            groupBox1.Location = new Point(81, 84);
-            groupBox1.Margin = new Padding(2);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2);
-            groupBox1.Size = new Size(555, 559);
-            groupBox1.TabIndex = 3;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Park";
+            txt_barcode.AnimateReadOnly = false;
+            txt_barcode.BackgroundImageLayout = ImageLayout.None;
+            txt_barcode.CharacterCasing = CharacterCasing.Normal;
+            txt_barcode.Depth = 0;
+            txt_barcode.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txt_barcode.HideSelection = false;
+            txt_barcode.Hint = "Enter Barcode To Search";
+            txt_barcode.LeadingIcon = (Image)resources.GetObject("txt_barcode.LeadingIcon");
+            txt_barcode.Location = new Point(18, 40);
+            txt_barcode.MaxLength = 32767;
+            txt_barcode.MouseState = MaterialSkin.MouseState.OUT;
+            txt_barcode.Name = "txt_barcode";
+            txt_barcode.PasswordChar = '\0';
+            txt_barcode.PrefixSuffixText = null;
+            txt_barcode.ReadOnly = false;
+            txt_barcode.RightToLeft = RightToLeft.No;
+            txt_barcode.SelectedText = "";
+            txt_barcode.SelectionLength = 0;
+            txt_barcode.SelectionStart = 0;
+            txt_barcode.ShortcutsEnabled = true;
+            txt_barcode.Size = new Size(510, 48);
+            txt_barcode.TabIndex = 27;
+            txt_barcode.TabStop = false;
+            txt_barcode.TextAlign = HorizontalAlignment.Center;
+            txt_barcode.TrailingIcon = null;
+            txt_barcode.UseSystemPasswordChar = false;
+            txt_barcode.Click += materialTextBox21_Click;
+            txt_barcode.KeyDown += materialTextBox21_KeyDown;
             // 
-            // button1
+            // materialButton3
             // 
-            button1.Location = new Point(121, 320);
-            button1.Name = "button1";
-            button1.Size = new Size(222, 98);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // parking1
-            // 
-            parking1.Location = new Point(5, 26);
-            parking1.Margin = new Padding(3, 4, 3, 4);
-            parking1.Name = "parking1";
-            parking1.Size = new Size(459, 243);
-            parking1.TabIndex = 0;
+            materialButton3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            materialButton3.AutoSize = false;
+            materialButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton3.BackColor = SystemColors.Control;
+            materialButton3.Density = MaterialButton.MaterialButtonDensity.Default;
+            materialButton3.Depth = 0;
+            materialButton3.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton3.ForeColor = SystemColors.ControlText;
+            materialButton3.HighEmphasis = true;
+            materialButton3.Icon = null;
+            materialButton3.Location = new Point(1347, 668);
+            materialButton3.Margin = new Padding(4, 6, 4, 6);
+            materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton3.Name = "materialButton3";
+            materialButton3.NoAccentTextColor = Color.Empty;
+            materialButton3.Size = new Size(158, 47);
+            materialButton3.TabIndex = 25;
+            materialButton3.Text = "Refresh";
+            materialButton3.Type = MaterialButton.MaterialButtonType.Contained;
+            materialButton3.UseAccentColor = true;
+            materialButton3.UseVisualStyleBackColor = false;
+            materialButton3.Click += materialButton3_Click;
             // 
             // lbl_welcome_user
             // 
             lbl_welcome_user.AutoSize = true;
-            lbl_welcome_user.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            lbl_welcome_user.Location = new Point(503, 17);
+            lbl_welcome_user.Depth = 0;
+            lbl_welcome_user.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lbl_welcome_user.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lbl_welcome_user.HighEmphasis = true;
+            lbl_welcome_user.Location = new Point(547, 15);
+            lbl_welcome_user.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_welcome_user.Name = "lbl_welcome_user";
-            lbl_welcome_user.Size = new Size(278, 46);
-            lbl_welcome_user.TabIndex = 0;
-            lbl_welcome_user.Text = "Welcome : USER";
+            lbl_welcome_user.Size = new Size(374, 58);
+            lbl_welcome_user.TabIndex = 6;
+            lbl_welcome_user.Text = "Welcome : Admin";
+            // 
+            // myListView
+            // 
+            myListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            myListView.BackColor = Color.FloralWhite;
+            myListView.BorderStyle = BorderStyle.None;
+            myListView.ContextMenuStrip = contextMenuStrip1;
+            myListView.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            myListView.LargeImageList = parking_imageList;
+            myListView.Location = new Point(640, 106);
+            myListView.MultiSelect = false;
+            myListView.Name = "myListView";
+            myListView.Size = new Size(865, 553);
+            myListView.SmallImageList = parking_imageList;
+            myListView.TabIndex = 5;
+            myListView.UseCompatibleStateImageBehavior = false;
+            myListView.MouseDoubleClick += myListView_MouseDoubleClick;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.BackColor = Color.FromArgb(255, 255, 255);
+            contextMenuStrip1.Depth = 0;
+            contextMenuStrip1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { testToolStripMenuItem, testToolStripMenuItem1 });
+            contextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.RenderMode = ToolStripRenderMode.Professional;
+            contextMenuStrip1.Size = new Size(241, 88);
+            // 
+            // testToolStripMenuItem
+            // 
+            testToolStripMenuItem.Name = "testToolStripMenuItem";
+            testToolStripMenuItem.Size = new Size(240, 42);
+            testToolStripMenuItem.Text = "Show Info";
+            // 
+            // testToolStripMenuItem1
+            // 
+            testToolStripMenuItem1.Name = "testToolStripMenuItem1";
+            testToolStripMenuItem1.Size = new Size(240, 42);
+            testToolStripMenuItem1.Text = "End Parking";
+            // 
+            // parking_imageList
+            // 
+            parking_imageList.ColorDepth = ColorDepth.Depth32Bit;
+            parking_imageList.ImageStream = (ImageListStreamer)resources.GetObject("parking_imageList.ImageStream");
+            parking_imageList.TransparentColor = Color.Transparent;
+            parking_imageList.Images.SetKeyName(0, "motor.png");
+            parking_imageList.Images.SetKeyName(1, "car.png");
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(parking1);
+            groupBox1.Location = new Point(89, 189);
+            groupBox1.Margin = new Padding(2);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(2);
+            groupBox1.Size = new Size(546, 470);
+            groupBox1.TabIndex = 3;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Park";
+            // 
+            // parking1
+            // 
+            parking1.Location = new Point(40, 70);
+            parking1.Margin = new Padding(3, 4, 3, 4);
+            parking1.Name = "parking1";
+            parking1.Size = new Size(459, 351);
+            parking1.TabIndex = 0;
             // 
             // tab_history
             // 
@@ -180,12 +283,12 @@
             tab_history.Controls.Add(materialButton2);
             tab_history.Controls.Add(lv_parking_history);
             tab_history.Controls.Add(label4);
-            tab_history.ImageKey = "settings.png";
+            tab_history.ImageKey = "history.png";
             tab_history.Location = new Point(4, 39);
             tab_history.Margin = new Padding(2);
             tab_history.Name = "tab_history";
             tab_history.Padding = new Padding(2);
-            tab_history.Size = new Size(1454, 792);
+            tab_history.Size = new Size(1529, 823);
             tab_history.TabIndex = 1;
             tab_history.Text = "History";
             // 
@@ -194,7 +297,7 @@
             materialButton2.AutoSize = false;
             materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton2.BackColor = SystemColors.Control;
-            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton2.Density = MaterialButton.MaterialButtonDensity.Default;
             materialButton2.Depth = 0;
             materialButton2.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialButton2.ForeColor = SystemColors.ControlText;
@@ -208,9 +311,10 @@
             materialButton2.Size = new Size(119, 38);
             materialButton2.TabIndex = 31;
             materialButton2.Text = "Refresh";
-            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton2.Type = MaterialButton.MaterialButtonType.Contained;
             materialButton2.UseAccentColor = false;
             materialButton2.UseVisualStyleBackColor = false;
+            materialButton2.Click += materialButton2_Click;
             // 
             // lv_parking_history
             // 
@@ -309,10 +413,11 @@
             // 
             tab_settings.Controls.Add(groupBox3);
             tab_settings.Controls.Add(groupBox2);
+            tab_settings.ImageKey = "settings.png";
             tab_settings.Location = new Point(4, 39);
             tab_settings.Name = "tab_settings";
             tab_settings.Padding = new Padding(3);
-            tab_settings.Size = new Size(1454, 792);
+            tab_settings.Size = new Size(1529, 823);
             tab_settings.TabIndex = 3;
             tab_settings.Text = "Settings";
             tab_settings.UseVisualStyleBackColor = true;
@@ -332,7 +437,7 @@
             materialButton1.AutoSize = false;
             materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton1.BackColor = SystemColors.Control;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Density = MaterialButton.MaterialButtonDensity.Default;
             materialButton1.Depth = 0;
             materialButton1.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialButton1.ForeColor = SystemColors.ControlText;
@@ -346,7 +451,7 @@
             materialButton1.Size = new Size(119, 38);
             materialButton1.TabIndex = 30;
             materialButton1.Text = "User Manager";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.Type = MaterialButton.MaterialButtonType.Contained;
             materialButton1.UseAccentColor = false;
             materialButton1.UseVisualStyleBackColor = false;
             materialButton1.Click += materialButton1_Click_1;
@@ -488,7 +593,7 @@
             btn_update_settings.AutoSize = false;
             btn_update_settings.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btn_update_settings.BackColor = SystemColors.Control;
-            btn_update_settings.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btn_update_settings.Density = MaterialButton.MaterialButtonDensity.Default;
             btn_update_settings.Depth = 0;
             btn_update_settings.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             btn_update_settings.ForeColor = SystemColors.ControlText;
@@ -502,8 +607,8 @@
             btn_update_settings.Size = new Size(119, 38);
             btn_update_settings.TabIndex = 24;
             btn_update_settings.Text = "Update";
-            btn_update_settings.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btn_update_settings.UseAccentColor = false;
+            btn_update_settings.Type = MaterialButton.MaterialButtonType.Contained;
+            btn_update_settings.UseAccentColor = true;
             btn_update_settings.UseVisualStyleBackColor = false;
             btn_update_settings.Click += btn_update_settings_Click;
             // 
@@ -511,12 +616,13 @@
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1505, 948);
+            ClientSize = new Size(1580, 979);
             Controls.Add(materialTabControl1);
             DrawerIsOpen = true;
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = materialTabControl1;
             DrawerUseColors = true;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "frm_dashboard";
             Padding = new Padding(0, 64, 2, 2);
@@ -526,6 +632,8 @@
             materialTabControl1.ResumeLayout(false);
             tab_home.ResumeLayout(false);
             tab_home.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            contextMenuStrip1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             tab_history.ResumeLayout(false);
             tab_settings.ResumeLayout(false);
@@ -553,11 +661,8 @@
         private MaterialSkin.Controls.MaterialTextBox2 txt_settings_hourly_rate;
         private GroupBox groupBox3;
         private MaterialSkin.Controls.MaterialButton materialButton1;
-        private Label lbl_welcome_user;
         private GroupBox groupBox1;
-        private Button button1;
-        private Components.Parking parking1;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
+        private Components.ParkingComponent parking1;
         private Label label4;
         private MaterialSkin.Controls.MaterialListView lv_parking_history;
         private ColumnHeader columnHeader1;
@@ -572,6 +677,15 @@
         private ColumnHeader columnHeader10;
         private ColumnHeader columnHeader11;
         private MaterialSkin.Controls.MaterialButton materialButton2;
+        private ImageList parking_imageList;
+        private ListView myListView;
+        private MaterialSkin.Controls.MaterialLabel lbl_welcome_user;
+        private GroupBox groupBox4;
+        private MaterialSkin.Controls.MaterialTextBox2 txt_barcode;
+        private MaterialContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem testToolStripMenuItem;
+        private ToolStripMenuItem testToolStripMenuItem1;
+        private MaterialButton materialButton3;
     }
 }
 

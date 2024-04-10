@@ -1,5 +1,6 @@
 using JTRParking.Classes;
 using JTRParking.Database;
+using JTRParking.Models;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
@@ -41,6 +42,8 @@ namespace JTRParking
 
                     if (password == user.Password)
                     {
+                        List<Setting> settings = context.Settings.ToList();
+                        AppSingleton.Instance.current_settings = settings;
                         AppSingleton.Instance.current_user = user;
                         frm_dashboard frm_Dashboard = new frm_dashboard();
                         frm_Dashboard.Show();

@@ -78,7 +78,7 @@
             materialButton1.TabIndex = 4;
             materialButton1.Text = "Login";
             materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
+            materialButton1.UseAccentColor = true;
             materialButton1.UseVisualStyleBackColor = false;
             materialButton1.Click += materialButton1_Click;
             // 
@@ -106,6 +106,7 @@
             txt_username.Size = new Size(360, 48);
             txt_username.TabIndex = 5;
             txt_username.TabStop = false;
+            txt_username.Text = "admin";
             txt_username.TextAlign = HorizontalAlignment.Center;
             txt_username.TrailingIcon = null;
             txt_username.UseSystemPasswordChar = false;
@@ -134,6 +135,7 @@
             txt_password.Size = new Size(360, 48);
             txt_password.TabIndex = 6;
             txt_password.TabStop = false;
+            txt_password.Text = "admin";
             txt_password.TextAlign = HorizontalAlignment.Center;
             txt_password.TrailingIcon = null;
             txt_password.UseSystemPasswordChar = false;
@@ -152,6 +154,7 @@
             // 
             // frm_login
             // 
+            AcceptButton = materialButton1;
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(625, 499);
@@ -161,6 +164,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             MaximizeBox = false;
             Name = "frm_login";
             Sizable = false;

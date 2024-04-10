@@ -1,6 +1,6 @@
 ﻿namespace JTRParking.Components
 {
-    partial class Parking
+    partial class ParkingComponent
     {
         /// <summary> 
         /// Required designer variable.
@@ -158,12 +158,12 @@
             materialButton2.ForeColor = SystemColors.ControlText;
             materialButton2.HighEmphasis = true;
             materialButton2.Icon = null;
-            materialButton2.Location = new Point(192, 372);
+            materialButton2.Location = new Point(153, 232);
             materialButton2.Margin = new Padding(4, 6, 4, 6);
             materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton2.Name = "materialButton2";
             materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(119, 38);
+            materialButton2.Size = new Size(174, 70);
             materialButton2.TabIndex = 23;
             materialButton2.Text = "Add";
             materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -171,7 +171,7 @@
             materialButton2.UseVisualStyleBackColor = false;
             materialButton2.Click += materialButton2_Click;
             // 
-            // Parking
+            // ParkingComponent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -183,8 +183,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Parking";
-            Size = new Size(463, 430);
+            Name = "ParkingComponent";
+            Size = new Size(437, 319);
             Load += Parking_Load;
             ResumeLayout(false);
             PerformLayout();
