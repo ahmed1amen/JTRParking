@@ -4,6 +4,7 @@ using JTRParking.Models;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
+using static JTRParking.Models.User;
 
 namespace JTRParking
 {
@@ -26,7 +27,7 @@ namespace JTRParking
 
         private void frm_login_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         private void materialButton1_Click(object sender, EventArgs e)

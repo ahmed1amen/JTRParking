@@ -70,7 +70,6 @@
             materialComboBox2.FormattingEnabled = true;
             materialComboBox2.IntegralHeight = false;
             materialComboBox2.ItemHeight = 43;
-            materialComboBox2.Items.AddRange(new object[] { "admin", "employee" });
             materialComboBox2.Location = new Point(97, 517);
             materialComboBox2.MaxDropDownItems = 4;
             materialComboBox2.MouseState = MaterialSkin.MouseState.OUT;

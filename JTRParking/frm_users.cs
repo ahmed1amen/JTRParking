@@ -2,6 +2,8 @@
 using JTRParking.Models;
 using MaterialSkin.Controls;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using User = JTRParking.Models.User;
 
 namespace JTRParking
@@ -73,6 +75,7 @@ namespace JTRParking
         User SelectedUser = new User();
         private void frm_users_Load(object sender, EventArgs e)
         {
+            materialComboBox2.DataSource = Enum.GetValues(typeof(User.UserRole));
             refreshData();
         }
 
@@ -90,7 +93,8 @@ namespace JTRParking
             materialComboBox2.SelectedIndex = 0;
 
             listViewUsers.GridLines = true;
-
+            User.UserRole userRole;
+            
             using (var context = new JTRDbContext())
             {
                 users = context.Users.ToList();
@@ -100,7 +104,7 @@ namespace JTRParking
                     item.SubItems.Add(user.Name);
                     item.SubItems.Add(user.Username);
                     item.SubItems.Add(user.Password);
-                    item.SubItems.Add(user.Role == 0 ? "Admin" : "Employee");
+                    item.SubItems.Add(user.Role.ToString() );
                     listViewUsers.Items.Add(item);
                 }
 
@@ -131,19 +135,28 @@ namespace JTRParking
         {
             if (listViewUsers.SelectedItems.Count > 0)
             {
+
+                User.UserRole userRole;
+
+
                 // Get the selected ListViewItem
                 ListViewItem selectedItem = listViewUsers.SelectedItems[0];
                 txt_id.Text = selectedItem.SubItems[0].Text; // Assuming Id is in the first column
                 txt_name.Text = selectedItem.SubItems[1].Text; // Assuming Name is in the second column
                 txt_username.Text = selectedItem.SubItems[2].Text; // Assuming Username is in the third column
                 txt_password.Text = selectedItem.SubItems[3].Text; // Assuming Password is in the fourth column
-                materialComboBox2.SelectedIndex = (selectedItem.SubItems[4].Text == "Admin") ? 0 : 1;
+                Enum.TryParse<User.UserRole>(selectedItem.SubItems[4].Text, out userRole);
+
+                materialComboBox2.SelectedItem = userRole;
 
                 SelectedUser.Id = int.Parse(selectedItem.SubItems[0].Text);
                 SelectedUser.Name = selectedItem.SubItems[1].Text;
                 SelectedUser.Username = selectedItem.SubItems[2].Text;
                 SelectedUser.Password = selectedItem.SubItems[3].Text;
-                SelectedUser.Role = (selectedItem.SubItems[4].Text == "Admin") ? 0 : 1;
+ 
+                Enum.TryParse<User.UserRole>(materialComboBox2.SelectedValue.ToString(), out userRole);
+
+                SelectedUser.Role = userRole;
 
 
                 materialComboBox2.Refresh();
@@ -175,12 +188,16 @@ namespace JTRParking
 
             if (MessageBox.Show("are you sure to add this user: " + txt_name.Text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                User.UserRole userRole;
+                Enum.TryParse<User.UserRole>(materialComboBox2.SelectedValue.ToString(), out userRole);
+
                 User user = new User
                 {
                     Name = txt_name.Text,
                     Username = txt_username.Text,
                     Password = txt_password.Text,
-                    Role = materialComboBox2.SelectedIndex
+                    Role = userRole
+
 
                 };
 
@@ -197,11 +214,13 @@ namespace JTRParking
             if (MessageBox.Show("are you sure to Update this user: " + txt_name.Text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 listViewUsers.Items.Clear();
+                User.UserRole userRole;
+                Enum.TryParse<User.UserRole>(materialComboBox2.SelectedValue.ToString(), out userRole);
 
                 SelectedUser.Name = txt_name.Text;
                 SelectedUser.Username = txt_username.Text;
                 SelectedUser.Password = txt_password.Text;
-                SelectedUser.Role = materialComboBox2.SelectedIndex;
+                SelectedUser.Role = userRole;
 
                 UserCrud(SelectedUser, CRUD_OPERATION.UPDATE);
                 MessageBox.Show("user successfully Updated", "Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);

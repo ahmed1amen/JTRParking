@@ -38,13 +38,13 @@ namespace JTRParking
         private void PrintForm()
         {
 
-            Graphics mygraphics = this.CreateGraphics();
-            Size s = this.Size;
+            Graphics mygraphics = tableLayoutPanel2.CreateGraphics();
+            Size s = tableLayoutPanel2.Size;
             memoryImage = new Bitmap(s.Width, s.Height, mygraphics);
             Graphics memoryGraphics = Graphics.FromImage(memoryImage);
             IntPtr dc1 = mygraphics.GetHdc();
             IntPtr dc2 = memoryGraphics.GetHdc();
-            BitBlt(dc2, 0, 0, this.ClientRectangle.Width, this.ClientRectangle.Height, dc1, 0, 0, 13369376);
+            BitBlt(dc2, 0, 0, tableLayoutPanel2.ClientRectangle.Width, tableLayoutPanel2.ClientRectangle.Height, dc1, 0, 0, 13369376);
             mygraphics.ReleaseHdc(dc1);
             memoryGraphics.ReleaseHdc(dc2);
 
@@ -53,6 +53,12 @@ namespace JTRParking
 
         private void parking_ticket_Load(object sender, EventArgs e)
         {
+            string parking_ticket_header_title = AppSingleton.Instance.current_settings.Where(s => s.Key == "parking_ticket_header_title").FirstOrDefault().Value;
+            string parking_ticket_header_sub_title = AppSingleton.Instance.current_settings.Where(s => s.Key == "parking_ticket_header_sub_title").FirstOrDefault().Value;
+            lbl_parking_ticket_header_title.Text = parking_ticket_header_title;
+            lbl_parking_ticket_header_sub_title.Text = parking_ticket_header_sub_title;
+
+
             Barcode b = new Barcode();
             b.IncludeLabel = true;
             var img = b.Encode(BarcodeStandard.Type.Code128, Parking.Barcode, SKColors.Black, SKColors.White, 290, 120);
@@ -71,14 +77,14 @@ namespace JTRParking
                 btn_endParking.Visible = true;
                 btn_endParking.BackColor = Color.Yellow;
 
-                tableLayoutPanel2.RowStyles[6].SizeType = SizeType.Absolute;
-                tableLayoutPanel2.RowStyles[6].Height = 0;
-
                 tableLayoutPanel2.RowStyles[7].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[7].Height = 0;
 
                 tableLayoutPanel2.RowStyles[8].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[8].Height = 0;
+
+                tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
+                tableLayoutPanel2.RowStyles[9].Height = 0;
 
 
 
@@ -91,13 +97,10 @@ namespace JTRParking
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            tableLayoutPanel1.Visible = false;
-            this.Refresh();
-            //  printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Recipt",100,300);
+        { 
+           
             PrintForm();
-            tableLayoutPanel1.Visible = true;
-            this.Refresh();
+         
             printPreviewDialog1.ShowDialog();
 
         }
@@ -113,7 +116,7 @@ namespace JTRParking
             decimal hourly_rate = decimal.Parse(AppSingleton.Instance.current_settings.Where(s => s.Key == "hourly_rate").FirstOrDefault().Value);
             string currency_symbol = AppSingleton.Instance.current_settings.Where(s => s.Key == "currency_symbol").FirstOrDefault().Value;
 
-             
+
 
             //
 
@@ -138,14 +141,14 @@ namespace JTRParking
                 lbl_OutTime.Text = Parking.OutTime.ToString();
 
 
-                tableLayoutPanel2.RowStyles[6].SizeType = SizeType.Absolute;
-                tableLayoutPanel2.RowStyles[6].Height = 60;
-
                 tableLayoutPanel2.RowStyles[7].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[7].Height = 60;
 
                 tableLayoutPanel2.RowStyles[8].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[8].Height = 60;
+
+                tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
+                tableLayoutPanel2.RowStyles[9].Height = 60;
 
 
 
@@ -157,14 +160,14 @@ namespace JTRParking
                 context.SaveChanges();
             }
 
-                 btn_endParking.Visible = false;
-                  btn_endParking.BackColor = Color.Yellow;
-
-            }
-
-
-
-
+            btn_endParking.Visible = false;
+            btn_endParking.BackColor = Color.Yellow;
 
         }
+
+
+
+
+
+    }
 }

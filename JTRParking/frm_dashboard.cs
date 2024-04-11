@@ -33,9 +33,11 @@ namespace JTRParking
         private void frm_dashboard_Load(object sender, EventArgs e)
         {
             lbl_welcome_user.Text = "Welcome : " + AppSingleton.Instance.current_user.Name;
+
+
             LoadSettings();
             LoadParking();
-
+            ManageRules();
 
             lv_parking_history.GridLines = true;
 
@@ -127,7 +129,7 @@ namespace JTRParking
 
         private void btn_update_settings_Click(object sender, EventArgs e)
         {
-            if (AppSingleton.Instance.current_user.Role != 0)
+            if (AppSingleton.Instance.current_user.Role != Models.User.UserRole.ADMIN)
             {
                 MessageBox.Show("Only Admin Can Update ", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -164,6 +166,22 @@ namespace JTRParking
                         case "currency_symbol":
                             {
                                 setting.Value = txt_settings_currency_symbol.Text;
+                                context.Update(setting);
+                                context.SaveChanges();
+                                break;
+                            }
+
+                        case "parking_ticket_header_title":
+                            {
+                                setting.Value = txt_settings_parking_ticket_header_title.Text;
+                                context.Update(setting);
+                                context.SaveChanges();
+                                break;
+                            }
+
+                        case "parking_ticket_header_sub_title":
+                            {
+                                setting.Value = txt_settings_parking_ticket_header_sub_title.Text;
                                 context.Update(setting);
                                 context.SaveChanges();
                                 break;
@@ -334,6 +352,10 @@ namespace JTRParking
 
             MessageBox.Show("Parking Successfully Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadParking();
+
+            if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_IN)
+                return;
+
             parking_ticket ParkingTicket = new parking_ticket();
             ParkingTicket.Parking = parking;
             ParkingTicket.ShowDialog(this);
@@ -343,7 +365,31 @@ namespace JTRParking
 
 
 
+        void ManageRules()
+        {
 
+            if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.ADMIN)
+                return;
+
+            materialTabControl1.TabPages.Remove(tab_settings);
+            materialTabControl1.Refresh();
+
+            if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_IN)
+            {
+                groupBox_add_parking.Enabled = true;
+                groupBox_find_vehicle.Enabled = false;
+                groupBox_manage_parking.Enabled = false;
+
+            }
+            else if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_OUT)
+            {
+                groupBox_add_parking.Enabled = false;
+                groupBox_find_vehicle.Enabled = true;
+                groupBox_manage_parking.Enabled = true;
+
+            }
+
+        }
     }
 
 }
