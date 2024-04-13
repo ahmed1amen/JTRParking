@@ -20,6 +20,7 @@ namespace JTRParking
     public partial class parking_ticket : Form
     {
         public Parking Parking { get; set; }
+
         public parking_ticket()
         {
             InitializeComponent();
@@ -32,29 +33,32 @@ namespace JTRParking
 
 
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        public static extern long BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, int dwRop);
+        public static extern long BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc,
+            int nXSrc, int nYSrc, int dwRop);
 
         private Bitmap memoryImage;
+
         private void PrintForm()
         {
-
             Graphics mygraphics = tableLayoutPanel2.CreateGraphics();
             Size s = tableLayoutPanel2.Size;
             memoryImage = new Bitmap(s.Width, s.Height, mygraphics);
             Graphics memoryGraphics = Graphics.FromImage(memoryImage);
             IntPtr dc1 = mygraphics.GetHdc();
             IntPtr dc2 = memoryGraphics.GetHdc();
-            BitBlt(dc2, 0, 0, tableLayoutPanel2.ClientRectangle.Width, tableLayoutPanel2.ClientRectangle.Height, dc1, 0, 0, 13369376);
+            BitBlt(dc2, 0, 0, tableLayoutPanel2.ClientRectangle.Width, tableLayoutPanel2.ClientRectangle.Height, dc1, 0,
+                0, 13369376);
             mygraphics.ReleaseHdc(dc1);
             memoryGraphics.ReleaseHdc(dc2);
-
         }
 
 
         private void parking_ticket_Load(object sender, EventArgs e)
         {
-            string parking_ticket_header_title = AppSingleton.Instance.current_settings.Where(s => s.Key == "parking_ticket_header_title").FirstOrDefault().Value;
-            string parking_ticket_header_sub_title = AppSingleton.Instance.current_settings.Where(s => s.Key == "parking_ticket_header_sub_title").FirstOrDefault().Value;
+            string parking_ticket_header_title = AppSingleton.Instance.current_settings
+                .Where(s => s.Key == "parking_ticket_header_title").FirstOrDefault().Value;
+            string parking_ticket_header_sub_title = AppSingleton.Instance.current_settings
+                .Where(s => s.Key == "parking_ticket_header_sub_title").FirstOrDefault().Value;
             lbl_parking_ticket_header_title.Text = parking_ticket_header_title;
             lbl_parking_ticket_header_sub_title.Text = parking_ticket_header_sub_title;
 
@@ -85,37 +89,28 @@ namespace JTRParking
 
                 tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[9].Height = 0;
-
-
-
-
             }
-
-
-
-
         }
 
         private void button2_Click(object sender, EventArgs e)
-        { 
-           
+        {
             PrintForm();
-         
-            printPreviewDialog1.ShowDialog();
 
+            printPreviewDialog1.ShowDialog();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btn_endParking_Click(object sender, EventArgs e)
         {
-            decimal first_hour_rate = decimal.Parse(AppSingleton.Instance.current_settings.Where(s => s.Key == "first_hour_rate").FirstOrDefault().Value);
-            decimal hourly_rate = decimal.Parse(AppSingleton.Instance.current_settings.Where(s => s.Key == "hourly_rate").FirstOrDefault().Value);
-            string currency_symbol = AppSingleton.Instance.current_settings.Where(s => s.Key == "currency_symbol").FirstOrDefault().Value;
-
+            decimal first_hour_rate = decimal.Parse(AppSingleton.Instance.current_settings
+                .Where(s => s.Key == "first_hour_rate").FirstOrDefault().Value);
+            decimal hourly_rate = decimal.Parse(AppSingleton.Instance.current_settings
+                .Where(s => s.Key == "hourly_rate").FirstOrDefault().Value);
+            string currency_symbol = AppSingleton.Instance.current_settings.Where(s => s.Key == "currency_symbol")
+                .FirstOrDefault().Value;
 
 
             //
@@ -149,9 +144,6 @@ namespace JTRParking
 
                 tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[9].Height = 60;
-
-
-
             }
 
             using (var context = new JTRDbContext())
@@ -162,12 +154,6 @@ namespace JTRParking
 
             btn_endParking.Visible = false;
             btn_endParking.BackColor = Color.Yellow;
-
         }
-
-
-
-
-
     }
 }

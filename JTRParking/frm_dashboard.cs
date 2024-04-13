@@ -241,7 +241,10 @@ namespace JTRParking
 
                     myListView.Items.Add(item);
 
+
                 }
+                groupBox_manage_parking.Text = "Manage Parking " + " - (" + myListView.Items.Count + ")";
+
 
             }
 
@@ -389,6 +392,12 @@ namespace JTRParking
 
             }
 
+        }
+
+        private void materialButton4_Click_1(object sender, EventArgs e)
+        {
+            frm_reports frmReports = new frm_reports();
+            frmReports.ShowDialog(this);
         }
     }
 

@@ -94,7 +94,7 @@ namespace JTRParking
 
             listViewUsers.GridLines = true;
             User.UserRole userRole;
-            
+
             using (var context = new JTRDbContext())
             {
                 users = context.Users.ToList();
@@ -104,7 +104,7 @@ namespace JTRParking
                     item.SubItems.Add(user.Name);
                     item.SubItems.Add(user.Username);
                     item.SubItems.Add(user.Password);
-                    item.SubItems.Add(user.Role.ToString() );
+                    item.SubItems.Add(user.Role.ToString());
                     listViewUsers.Items.Add(item);
                 }
 
@@ -153,7 +153,7 @@ namespace JTRParking
                 SelectedUser.Name = selectedItem.SubItems[1].Text;
                 SelectedUser.Username = selectedItem.SubItems[2].Text;
                 SelectedUser.Password = selectedItem.SubItems[3].Text;
- 
+
                 Enum.TryParse<User.UserRole>(materialComboBox2.SelectedValue.ToString(), out userRole);
 
                 SelectedUser.Role = userRole;
