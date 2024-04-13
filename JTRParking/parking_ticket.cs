@@ -28,7 +28,11 @@ namespace JTRParking
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            e.PageSettings.PaperSize = new PaperSize("Custom", (int)(80 / 25.4 * 100), (int)(100 / 25.4 * 100)); // Converting millimeters to hundredths of an inch
+            e.PageSettings.Landscape = false; // Set to true if landscape orientation is desired
+
             e.Graphics.DrawImage(memoryImage, 0, 0);
+
         }
 
 
@@ -69,7 +73,7 @@ namespace JTRParking
             pictureBox1.Image = Image.FromStream(img.Encode().AsStream());
             lbl_DriverName.Text = Parking.DriverName;
             lbl_DriverMobile.Text = Parking.DriverMobile;
-            lbl_InTime.Text = Parking.InTime.ToString();
+            lbl_InTime.Text = Parking.InTime.ToString("MM/dd/yyyy hh:mm:ss tt");
             lbl_OutTime.Text = Parking.OutTime.ToString();
             lbl_TotalHours.Text = "5h";
             lbl_Amount.Text = Parking.Amount.ToString();
@@ -89,6 +93,7 @@ namespace JTRParking
 
                 tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
                 tableLayoutPanel2.RowStyles[9].Height = 0;
+
             }
         }
 
@@ -157,3 +162,41 @@ namespace JTRParking
         }
     }
 }
+
+
+
+
+
+
+//// Assuming you have defined first_hour_rate and hourly_rate variables
+
+//Parking.OutTime = DateTime.Now;
+
+//// Add a 10-minute grace period
+//DateTime gracePeriodOutTime = Parking.OutTime.Value.AddMinutes(10);
+
+//// Calculate the duration considering the grace period
+//TimeSpan duration = gracePeriodOutTime - Parking.InTime;
+
+//// If the duration is negative (i.e., the grace period exceeds the InTime), set it to zero
+//if (duration.TotalMinutes < 0)
+//{
+//    duration = TimeSpan.Zero;
+//}
+
+//// Calculate the total hours parked, including the first hour
+//int totalHoursParked = (int)Math.Ceiling(duration.TotalHours);
+
+//decimal rate = 0;
+
+//if (totalHoursParked > 0)
+//{
+//    // Add the rate for the first hour
+//    rate += first_hour_rate;
+
+//    // If parked for more than one hour, add the additional hourly rate
+//    if (totalHoursParked > 1)
+//    {
+//        rate += (totalHoursParked - 1) * hourly_rate;
+//    }
+//}

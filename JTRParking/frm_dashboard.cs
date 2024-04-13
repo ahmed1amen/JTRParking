@@ -98,6 +98,19 @@ namespace JTRParking
                             break;
                         }
 
+                    case "parking_ticket_header_title":
+                        {
+                            txt_settings_parking_ticket_header_title.Text = setting.Value;
+                            break;
+                        }
+
+                    case "parking_ticket_header_sub_title":
+                        {
+                            txt_settings_parking_ticket_header_sub_title.Text = setting.Value;
+                            break;
+                        }
+
+
                 }
 
 
@@ -398,6 +411,11 @@ namespace JTRParking
         {
             frm_reports frmReports = new frm_reports();
             frmReports.ShowDialog(this);
+        }
+
+        private void timer_date_now_Tick(object sender, EventArgs e)
+        {
+            lbl_date_time_now.Text = DateTime.Now.ToString("MM/dd/yyyy") + "\n" + DateTime.Now.ToString("hh:mm:ss tt");
         }
     }
 

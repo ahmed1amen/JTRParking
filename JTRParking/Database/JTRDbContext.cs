@@ -2,6 +2,7 @@
 using JTRParking.Classes;
 using JTRParking.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Client.NativeInterop;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -77,7 +78,15 @@ namespace JTRParking.Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=.;Database=jtr_parking;Trusted_Connection=true;TrustServerCertificate=true;");
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Application.StartupPath) // Adjust if your appsettings.json is in a different location
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            string connectionString = configuration.GetConnectionString("JTRParkingConnection");
+
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }

@@ -35,9 +35,11 @@ namespace JTRParking
             imageList1 = new ImageList(components);
             materialTabControl1 = new MaterialTabControl();
             tab_home = new TabPage();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            lbl_welcome_user = new MaterialLabel();
+            lbl_date_time_now = new MaterialLabel();
             groupBox_find_vehicle = new GroupBox();
             txt_barcode = new MaterialTextBox2();
-            lbl_welcome_user = new MaterialLabel();
             groupBox_add_parking = new GroupBox();
             parking1 = new Components.ParkingComponent();
             groupBox_manage_parking = new GroupBox();
@@ -48,9 +50,8 @@ namespace JTRParking
             testToolStripMenuItem1 = new ToolStripMenuItem();
             parking_imageList = new ImageList(components);
             tab_history = new TabPage();
-            materialButton4 = new MaterialButton();
+            tableLayoutPanel2 = new TableLayoutPanel();
             materialLabel1 = new MaterialLabel();
-            materialButton2 = new MaterialButton();
             lv_parking_history = new MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -63,6 +64,8 @@ namespace JTRParking
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
             columnHeader11 = new ColumnHeader();
+            materialButton2 = new MaterialButton();
+            materialButton4 = new MaterialButton();
             tab_settings = new TabPage();
             groupBox2 = new GroupBox();
             materialExpansionPanel2 = new MaterialExpansionPanel();
@@ -80,13 +83,16 @@ namespace JTRParking
             label1 = new Label();
             txt_settings_hourly_rate = new MaterialTextBox2();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
+            timer_date_now = new System.Windows.Forms.Timer(components);
             materialTabControl1.SuspendLayout();
             tab_home.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             groupBox_find_vehicle.SuspendLayout();
             groupBox_add_parking.SuspendLayout();
             groupBox_manage_parking.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
             tab_history.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             tab_settings.SuspendLayout();
             groupBox2.SuspendLayout();
             materialExpansionPanel2.SuspendLayout();
@@ -104,26 +110,26 @@ namespace JTRParking
             // 
             // materialTabControl1
             // 
-            materialTabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             materialTabControl1.Controls.Add(tab_home);
             materialTabControl1.Controls.Add(tab_history);
             materialTabControl1.Controls.Add(tab_settings);
             materialTabControl1.Depth = 0;
+            materialTabControl1.Dock = DockStyle.Fill;
             materialTabControl1.ImageList = imageList1;
-            materialTabControl1.Location = new Point(18, 85);
+            materialTabControl1.Location = new Point(0, 51);
             materialTabControl1.Margin = new Padding(2);
             materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1037, 622);
+            materialTabControl1.Size = new Size(1221, 702);
             materialTabControl1.TabIndex = 1;
             // 
             // tab_home
             // 
             tab_home.BackColor = Color.White;
+            tab_home.Controls.Add(tableLayoutPanel1);
             tab_home.Controls.Add(groupBox_find_vehicle);
-            tab_home.Controls.Add(lbl_welcome_user);
             tab_home.Controls.Add(groupBox_add_parking);
             tab_home.Controls.Add(groupBox_manage_parking);
             tab_home.ImageKey = "home.png";
@@ -131,19 +137,64 @@ namespace JTRParking
             tab_home.Margin = new Padding(2);
             tab_home.Name = "tab_home";
             tab_home.Padding = new Padding(2);
-            tab_home.Size = new Size(1029, 579);
+            tab_home.Size = new Size(1213, 659);
             tab_home.TabIndex = 0;
             tab_home.Text = "Home";
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.90244F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.09756F));
+            tableLayoutPanel1.Controls.Add(lbl_welcome_user, 0, 0);
+            tableLayoutPanel1.Controls.Add(lbl_date_time_now, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(2, 2);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(1209, 70);
+            tableLayoutPanel1.TabIndex = 28;
+            // 
+            // lbl_welcome_user
+            // 
+            lbl_welcome_user.Depth = 0;
+            lbl_welcome_user.Dock = DockStyle.Fill;
+            lbl_welcome_user.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lbl_welcome_user.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lbl_welcome_user.HighEmphasis = true;
+            lbl_welcome_user.Location = new Point(2, 0);
+            lbl_welcome_user.Margin = new Padding(2, 0, 2, 0);
+            lbl_welcome_user.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_welcome_user.Name = "lbl_welcome_user";
+            lbl_welcome_user.Size = new Size(575, 70);
+            lbl_welcome_user.TabIndex = 6;
+            lbl_welcome_user.Text = "Welcome : Admin";
+            // 
+            // lbl_date_time_now
+            // 
+            lbl_date_time_now.Depth = 0;
+            lbl_date_time_now.Dock = DockStyle.Fill;
+            lbl_date_time_now.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lbl_date_time_now.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lbl_date_time_now.HighEmphasis = true;
+            lbl_date_time_now.Location = new Point(581, 0);
+            lbl_date_time_now.Margin = new Padding(2, 0, 2, 0);
+            lbl_date_time_now.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_date_time_now.Name = "lbl_date_time_now";
+            lbl_date_time_now.Size = new Size(626, 70);
+            lbl_date_time_now.TabIndex = 7;
+            lbl_date_time_now.TextAlign = ContentAlignment.MiddleRight;
             // 
             // groupBox_find_vehicle
             // 
             groupBox_find_vehicle.Controls.Add(txt_barcode);
             groupBox_find_vehicle.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox_find_vehicle.Location = new Point(17, 94);
+            groupBox_find_vehicle.Location = new Point(10, 93);
             groupBox_find_vehicle.Margin = new Padding(2);
             groupBox_find_vehicle.Name = "groupBox_find_vehicle";
             groupBox_find_vehicle.Padding = new Padding(2);
-            groupBox_find_vehicle.Size = new Size(434, 86);
+            groupBox_find_vehicle.Size = new Size(451, 86);
             groupBox_find_vehicle.TabIndex = 26;
             groupBox_find_vehicle.TabStop = false;
             groupBox_find_vehicle.Text = "Find Vehicle";
@@ -180,30 +231,15 @@ namespace JTRParking
             txt_barcode.Click += materialTextBox21_Click;
             txt_barcode.KeyDown += materialTextBox21_KeyDown;
             // 
-            // lbl_welcome_user
-            // 
-            lbl_welcome_user.AutoSize = true;
-            lbl_welcome_user.Depth = 0;
-            lbl_welcome_user.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lbl_welcome_user.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
-            lbl_welcome_user.HighEmphasis = true;
-            lbl_welcome_user.Location = new Point(376, 6);
-            lbl_welcome_user.Margin = new Padding(2, 0, 2, 0);
-            lbl_welcome_user.MouseState = MaterialSkin.MouseState.HOVER;
-            lbl_welcome_user.Name = "lbl_welcome_user";
-            lbl_welcome_user.Size = new Size(460, 72);
-            lbl_welcome_user.TabIndex = 6;
-            lbl_welcome_user.Text = "Welcome : Admin";
-            // 
             // groupBox_add_parking
             // 
             groupBox_add_parking.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_add_parking.Controls.Add(parking1);
-            groupBox_add_parking.Location = new Point(14, 179);
+            groupBox_add_parking.Location = new Point(10, 179);
             groupBox_add_parking.Margin = new Padding(2);
             groupBox_add_parking.Name = "groupBox_add_parking";
             groupBox_add_parking.Padding = new Padding(2);
-            groupBox_add_parking.Size = new Size(437, 368);
+            groupBox_add_parking.Size = new Size(451, 476);
             groupBox_add_parking.TabIndex = 3;
             groupBox_add_parking.TabStop = false;
             groupBox_add_parking.Text = "Park";
@@ -214,7 +250,7 @@ namespace JTRParking
             parking1.Location = new Point(2, 18);
             parking1.Margin = new Padding(2, 3, 2, 3);
             parking1.Name = "parking1";
-            parking1.Size = new Size(433, 348);
+            parking1.Size = new Size(447, 456);
             parking1.TabIndex = 0;
             // 
             // groupBox_manage_parking
@@ -222,11 +258,11 @@ namespace JTRParking
             groupBox_manage_parking.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox_manage_parking.Controls.Add(materialButton3);
             groupBox_manage_parking.Controls.Add(myListView);
-            groupBox_manage_parking.Location = new Point(469, 93);
+            groupBox_manage_parking.Location = new Point(465, 105);
             groupBox_manage_parking.Margin = new Padding(2);
             groupBox_manage_parking.Name = "groupBox_manage_parking";
             groupBox_manage_parking.Padding = new Padding(2);
-            groupBox_manage_parking.Size = new Size(556, 465);
+            groupBox_manage_parking.Size = new Size(746, 548);
             groupBox_manage_parking.TabIndex = 27;
             groupBox_manage_parking.TabStop = false;
             groupBox_manage_parking.Text = "Manage Parking";
@@ -243,7 +279,7 @@ namespace JTRParking
             materialButton3.ForeColor = SystemColors.ControlText;
             materialButton3.HighEmphasis = true;
             materialButton3.Icon = null;
-            materialButton3.Location = new Point(417, 412);
+            materialButton3.Location = new Point(616, 495);
             materialButton3.Margin = new Padding(3, 5, 3, 5);
             materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton3.Name = "materialButton3";
@@ -268,7 +304,7 @@ namespace JTRParking
             myListView.Margin = new Padding(2);
             myListView.MultiSelect = false;
             myListView.Name = "myListView";
-            myListView.Size = new Size(537, 378);
+            myListView.Size = new Size(736, 461);
             myListView.SmallImageList = parking_imageList;
             myListView.TabIndex = 5;
             myListView.UseCompatibleStateImageBehavior = false;
@@ -309,52 +345,44 @@ namespace JTRParking
             // tab_history
             // 
             tab_history.BackColor = Color.White;
-            tab_history.Controls.Add(materialButton4);
-            tab_history.Controls.Add(materialLabel1);
-            tab_history.Controls.Add(materialButton2);
-            tab_history.Controls.Add(lv_parking_history);
+            tab_history.Controls.Add(tableLayoutPanel2);
             tab_history.ImageKey = "history.png";
             tab_history.Location = new Point(4, 39);
             tab_history.Margin = new Padding(2);
             tab_history.Name = "tab_history";
             tab_history.Padding = new Padding(2);
-            tab_history.Size = new Size(1029, 579);
+            tab_history.Size = new Size(1213, 659);
             tab_history.TabIndex = 1;
             tab_history.Text = "History";
             // 
-            // materialButton4
+            // tableLayoutPanel2
             // 
-            materialButton4.AutoSize = false;
-            materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton4.BackColor = SystemColors.Control;
-            materialButton4.Density = MaterialButton.MaterialButtonDensity.Default;
-            materialButton4.Depth = 0;
-            materialButton4.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialButton4.ForeColor = SystemColors.ControlText;
-            materialButton4.HighEmphasis = true;
-            materialButton4.Icon = null;
-            materialButton4.Location = new Point(865, 532);
-            materialButton4.Margin = new Padding(3, 5, 3, 5);
-            materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton4.Name = "materialButton4";
-            materialButton4.NoAccentTextColor = Color.Empty;
-            materialButton4.Size = new Size(95, 30);
-            materialButton4.TabIndex = 33;
-            materialButton4.Text = "Reports";
-            materialButton4.Type = MaterialButton.MaterialButtonType.Contained;
-            materialButton4.UseAccentColor = false;
-            materialButton4.UseVisualStyleBackColor = false;
-            materialButton4.Click += materialButton4_Click_1;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.38318F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.6168222F));
+            tableLayoutPanel2.Controls.Add(materialLabel1, 0, 0);
+            tableLayoutPanel2.Controls.Add(lv_parking_history, 0, 1);
+            tableLayoutPanel2.Controls.Add(materialButton2, 0, 3);
+            tableLayoutPanel2.Controls.Add(materialButton4, 1, 3);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(2, 2);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 4;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 439F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 79F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel2.Size = new Size(1209, 655);
+            tableLayoutPanel2.TabIndex = 34;
             // 
             // materialLabel1
             // 
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
-            materialLabel1.Dock = DockStyle.Top;
             materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             materialLabel1.HighEmphasis = true;
-            materialLabel1.Location = new Point(2, 480);
+            materialLabel1.Location = new Point(2, 0);
             materialLabel1.Margin = new Padding(2, 0, 2, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
@@ -363,49 +391,27 @@ namespace JTRParking
             materialLabel1.Text = "Parking History";
             materialLabel1.UseAccent = true;
             // 
-            // materialButton2
-            // 
-            materialButton2.AutoSize = false;
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.BackColor = SystemColors.Control;
-            materialButton2.Density = MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialButton2.ForeColor = SystemColors.ControlText;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.Location = new Point(62, 532);
-            materialButton2.Margin = new Padding(3, 5, 3, 5);
-            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(95, 30);
-            materialButton2.TabIndex = 31;
-            materialButton2.Text = "Refresh";
-            materialButton2.Type = MaterialButton.MaterialButtonType.Contained;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = false;
-            materialButton2.Click += materialButton2_Click;
-            // 
             // lv_parking_history
             // 
+            lv_parking_history.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lv_parking_history.AutoSizeTable = false;
             lv_parking_history.BackColor = Color.FromArgb(255, 255, 255);
             lv_parking_history.BorderStyle = BorderStyle.None;
             lv_parking_history.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11 });
+            tableLayoutPanel2.SetColumnSpan(lv_parking_history, 2);
             lv_parking_history.Depth = 0;
-            lv_parking_history.Dock = DockStyle.Top;
             lv_parking_history.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lv_parking_history.FullRowSelect = true;
-            lv_parking_history.Location = new Point(2, 2);
+            lv_parking_history.Location = new Point(2, 30);
             lv_parking_history.Margin = new Padding(2);
             lv_parking_history.MinimumSize = new Size(160, 80);
             lv_parking_history.MouseLocation = new Point(-1, -1);
             lv_parking_history.MouseState = MaterialSkin.MouseState.OUT;
             lv_parking_history.Name = "lv_parking_history";
             lv_parking_history.OwnerDraw = true;
-            lv_parking_history.Size = new Size(1025, 478);
-            lv_parking_history.TabIndex = 2;
+            tableLayoutPanel2.SetRowSpan(lv_parking_history, 2);
+            lv_parking_history.Size = new Size(1205, 514);
+            lv_parking_history.TabIndex = 3;
             lv_parking_history.UseCompatibleStateImageBehavior = false;
             lv_parking_history.View = View.Details;
             // 
@@ -473,6 +479,56 @@ namespace JTRParking
             columnHeader11.TextAlign = HorizontalAlignment.Center;
             columnHeader11.Width = 150;
             // 
+            // materialButton2
+            // 
+            materialButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            materialButton2.AutoSize = false;
+            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton2.BackColor = SystemColors.Control;
+            materialButton2.Density = MaterialButton.MaterialButtonDensity.Default;
+            materialButton2.Depth = 0;
+            materialButton2.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton2.ForeColor = SystemColors.ControlText;
+            materialButton2.HighEmphasis = true;
+            materialButton2.Icon = null;
+            materialButton2.Location = new Point(3, 617);
+            materialButton2.Margin = new Padding(3, 5, 3, 5);
+            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton2.Name = "materialButton2";
+            materialButton2.NoAccentTextColor = Color.Empty;
+            materialButton2.Size = new Size(128, 33);
+            materialButton2.TabIndex = 31;
+            materialButton2.Text = "Refresh";
+            materialButton2.Type = MaterialButton.MaterialButtonType.Contained;
+            materialButton2.UseAccentColor = false;
+            materialButton2.UseVisualStyleBackColor = false;
+            materialButton2.Click += materialButton2_Click;
+            // 
+            // materialButton4
+            // 
+            materialButton4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            materialButton4.AutoSize = false;
+            materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton4.BackColor = SystemColors.Control;
+            materialButton4.Density = MaterialButton.MaterialButtonDensity.Default;
+            materialButton4.Depth = 0;
+            materialButton4.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton4.ForeColor = SystemColors.ControlText;
+            materialButton4.HighEmphasis = true;
+            materialButton4.Icon = null;
+            materialButton4.Location = new Point(1059, 617);
+            materialButton4.Margin = new Padding(3, 5, 3, 5);
+            materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton4.Name = "materialButton4";
+            materialButton4.NoAccentTextColor = Color.Empty;
+            materialButton4.Size = new Size(112, 33);
+            materialButton4.TabIndex = 33;
+            materialButton4.Text = "Reports";
+            materialButton4.Type = MaterialButton.MaterialButtonType.Contained;
+            materialButton4.UseAccentColor = false;
+            materialButton4.UseVisualStyleBackColor = false;
+            materialButton4.Click += materialButton4_Click_1;
+            // 
             // tab_settings
             // 
             tab_settings.Controls.Add(groupBox2);
@@ -481,20 +537,21 @@ namespace JTRParking
             tab_settings.Margin = new Padding(2);
             tab_settings.Name = "tab_settings";
             tab_settings.Padding = new Padding(2);
-            tab_settings.Size = new Size(1029, 579);
+            tab_settings.Size = new Size(1213, 659);
             tab_settings.TabIndex = 3;
             tab_settings.Text = "Settings";
             tab_settings.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(materialExpansionPanel2);
             groupBox2.Controls.Add(materialExpansionPanel1);
             groupBox2.Location = new Point(22, 36);
             groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(2);
-            groupBox2.Size = new Size(990, 539);
+            groupBox2.Size = new Size(1173, 588);
             groupBox2.TabIndex = 25;
             groupBox2.TabStop = false;
             groupBox2.Text = "Settings";
@@ -506,16 +563,16 @@ namespace JTRParking
             materialExpansionPanel2.Controls.Add(materialButton1);
             materialExpansionPanel2.Depth = 0;
             materialExpansionPanel2.Description = "";
-            materialExpansionPanel2.ExpandHeight = 510;
+            materialExpansionPanel2.ExpandHeight = 547;
             materialExpansionPanel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialExpansionPanel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialExpansionPanel2.Location = new Point(588, 14);
+            materialExpansionPanel2.Location = new Point(776, 14);
             materialExpansionPanel2.Margin = new Padding(13);
             materialExpansionPanel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialExpansionPanel2.Name = "materialExpansionPanel2";
             materialExpansionPanel2.Padding = new Padding(19, 51, 19, 13);
             materialExpansionPanel2.ShowCollapseExpand = false;
-            materialExpansionPanel2.Size = new Size(382, 510);
+            materialExpansionPanel2.Size = new Size(382, 547);
             materialExpansionPanel2.TabIndex = 31;
             materialExpansionPanel2.Title = "Manage";
             materialExpansionPanel2.ValidationButtonText = "";
@@ -531,7 +588,7 @@ namespace JTRParking
             materialButton1.ForeColor = SystemColors.ControlText;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(122, 74);
+            materialButton1.Location = new Point(22, 61);
             materialButton1.Margin = new Padding(3, 5, 3, 5);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -561,16 +618,16 @@ namespace JTRParking
             materialExpansionPanel1.Controls.Add(txt_settings_hourly_rate);
             materialExpansionPanel1.Depth = 0;
             materialExpansionPanel1.Description = "";
-            materialExpansionPanel1.ExpandHeight = 490;
+            materialExpansionPanel1.ExpandHeight = 539;
             materialExpansionPanel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialExpansionPanel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialExpansionPanel1.Location = new Point(11, 34);
-            materialExpansionPanel1.Margin = new Padding(13);
+            materialExpansionPanel1.Margin = new Padding(16);
             materialExpansionPanel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialExpansionPanel1.Name = "materialExpansionPanel1";
             materialExpansionPanel1.Padding = new Padding(19, 51, 19, 13);
             materialExpansionPanel1.ShowCollapseExpand = false;
-            materialExpansionPanel1.Size = new Size(443, 490);
+            materialExpansionPanel1.Size = new Size(484, 539);
             materialExpansionPanel1.TabIndex = 30;
             materialExpansionPanel1.Title = "General Settings";
             materialExpansionPanel1.ValidationButtonText = "";
@@ -674,7 +731,7 @@ namespace JTRParking
             btn_update_settings.ForeColor = SystemColors.ControlText;
             btn_update_settings.HighEmphasis = true;
             btn_update_settings.Icon = null;
-            btn_update_settings.Location = new Point(140, 412);
+            btn_update_settings.Location = new Point(159, 483);
             btn_update_settings.Margin = new Padding(3, 5, 3, 5);
             btn_update_settings.MouseState = MaterialSkin.MouseState.HOVER;
             btn_update_settings.Name = "btn_update_settings";
@@ -798,13 +855,19 @@ namespace JTRParking
             txt_settings_hourly_rate.UseSystemPasswordChar = false;
             txt_settings_hourly_rate.KeyPress += text_allow_decimal_KeyPress;
             // 
+            // timer_date_now
+            // 
+            timer_date_now.Enabled = true;
+            timer_date_now.Interval = 1000;
+            timer_date_now.Tick += timer_date_now_Tick;
+            // 
             // frm_dashboard
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1071, 712);
+            ClientSize = new Size(1223, 755);
             Controls.Add(materialTabControl1);
             DrawerIsOpen = true;
             DrawerShowIconsWhenHidden = true;
@@ -820,13 +883,14 @@ namespace JTRParking
             Load += frm_dashboard_Load;
             materialTabControl1.ResumeLayout(false);
             tab_home.ResumeLayout(false);
-            tab_home.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             groupBox_find_vehicle.ResumeLayout(false);
             groupBox_add_parking.ResumeLayout(false);
             groupBox_manage_parking.ResumeLayout(false);
             contextMenuStrip1.ResumeLayout(false);
             tab_history.ResumeLayout(false);
-            tab_history.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             tab_settings.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             materialExpansionPanel2.ResumeLayout(false);
@@ -855,19 +919,6 @@ namespace JTRParking
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private GroupBox groupBox_add_parking;
         private Components.ParkingComponent parking1;
-        private MaterialSkin.Controls.MaterialListView lv_parking_history;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
-        private ColumnHeader columnHeader6;
-        private ColumnHeader columnHeader7;
-        private ColumnHeader columnHeader8;
-        private ColumnHeader columnHeader9;
-        private ColumnHeader columnHeader10;
-        private ColumnHeader columnHeader11;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
         private ImageList parking_imageList;
         private ListView myListView;
         private MaterialSkin.Controls.MaterialLabel lbl_welcome_user;
@@ -885,6 +936,23 @@ namespace JTRParking
         private MaterialMultiLineTextBox2 txt_settings_parking_ticket_header_sub_title;
         private GroupBox groupBox_manage_parking;
         private MaterialLabel materialLabel1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private MaterialLabel lbl_date_time_now;
+        private System.Windows.Forms.Timer timer_date_now;
+        private TableLayoutPanel tableLayoutPanel2;
+        private MaterialListView lv_parking_history;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
+        private ColumnHeader columnHeader9;
+        private ColumnHeader columnHeader10;
+        private ColumnHeader columnHeader11;
+        private MaterialButton materialButton2;
         private MaterialButton materialButton4;
     }
 }
