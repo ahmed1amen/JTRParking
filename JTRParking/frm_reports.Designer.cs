@@ -176,7 +176,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(766, 1060);
+            ClientSize = new Size(714, 1001);
             Controls.Add(materialLabel4);
             Controls.Add(materialLabel3);
             Controls.Add(comboBox1);
