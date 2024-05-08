@@ -39,6 +39,11 @@ namespace JTRParking
 
         private void frm_reports_Load(object sender, EventArgs e)
         {
+            using (var context = new JTRDbContext())
+            {
+                comboBox1.DataSource = context.Users.ToList();
+                comboBox1.DisplayMember = "name";
+            }
 
 
             dateTimePickerStart.Format = DateTimePickerFormat.Custom;
@@ -56,18 +61,30 @@ namespace JTRParking
         {
             DateTime startTime = dateTimePickerStart.Value;
             DateTime endTime = dateTimePickerEnd.Value;
+            User selectedUser;
+            int user_id = 0;
+            if (comboBox1.SelectedItem != null)
+            {
+
+                selectedUser = (User)comboBox1.SelectedItem;
+                user_id = selectedUser.Id;
+
+                // Use the selected user as needed
+            }
 
             // Select parkings within the specified time range
             // var parkingsWithinTimeRange = parkings.Where(p => p.CreatedAt >= startTime && p.CreatedAt <= endTime).ToList();
             using (var context = new JTRDbContext())
             {
 
-                List<Parking> parkings = context.Parkings.Where(p => p.CreatedAt >= startTime && p.CreatedAt <= endTime).ToList();
+                List<Parking> parkings = context.Parkings
+                    .Where(p => p.CreatedAt >= startTime && p.CreatedAt <= endTime)
+                    .Where(p => p.CreatedBy == (ulong)user_id).ToList();
 
                 if (parkings.Count != 0)
                 {
-
-
+                    decimal totalAmount = parkings.Sum(p => p.Amount);
+                    materialLabel3.Text = totalAmount.ToString();
 
                 }
                 else

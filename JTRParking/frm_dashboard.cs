@@ -13,6 +13,9 @@ namespace JTRParking
 {
     public partial class frm_dashboard : MaterialForm
     {
+
+        int current_screen_h = 0;
+
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public frm_dashboard()
         {
@@ -24,7 +27,7 @@ namespace JTRParking
             // materialSkinManager.ColorScheme=new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500)
 
             parking1.ParkingAdded += ParkingComponent_OnParkingAdded;
-
+           this.current_screen_h= Screen.GetWorkingArea(this).Height;
 
         }
 
@@ -41,6 +44,8 @@ namespace JTRParking
 
             lv_parking_history.GridLines = true;
 
+            if (AppSingleton.Instance.current_user.Role == (Models.User.UserRole.EMPLOYEE_OUT | Models.User.UserRole.ADMIN))
+                timer3.Start();
             //pictureBox1.BackgroundImage = Image.FromStream(img.Encode().AsStream());
 
 
@@ -237,11 +242,13 @@ namespace JTRParking
         void LoadParking()
         {
 
-            myListView.Clear();
+          
             using (var context = new JTRDbContext())
             {
                 List<Parking> parkings = context.Parkings.Where(p => p.Status == Parking.ParkingStatus.PENDING).ToList();
-
+               if (parkings.Count != myListView.Items.Count) { 
+                myListView.Clear();
+               
                 foreach (Parking parking in parkings)
                 {
 
@@ -258,7 +265,7 @@ namespace JTRParking
                 }
                 groupBox_manage_parking.Text = "Manage Parking " + " - (" + myListView.Items.Count + ")";
 
-
+                }
             }
 
         }
@@ -316,6 +323,7 @@ namespace JTRParking
         {
             if (e.KeyCode == Keys.Enter)
             {
+
                 using (var context = new JTRDbContext())
                 {
 
@@ -325,12 +333,13 @@ namespace JTRParking
                     {
                         parking_ticket ParkingTicket = new parking_ticket();
                         ParkingTicket.Parking = parking;
+                        ParkingTicket.Height = this.current_screen_h - (int)(this.current_screen_h * 0.1);
                         ParkingTicket.ShowDialog(this);
                     }
                     else
                         MessageBox.Show("Not Found!", "Results", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-
+                    txt_barcode.Clear();
 
                 }
             }
@@ -354,7 +363,9 @@ namespace JTRParking
 
                 parking_ticket ParkingTicket = new parking_ticket();
                 ParkingTicket.Parking = parking;
+                ParkingTicket.Height = this.current_screen_h - (int)(this.current_screen_h * 0.1);
                 ParkingTicket.ShowDialog(this);
+                ParkingTicket.AutoPrint = false;
                 LoadParking();
 
             }
@@ -367,15 +378,18 @@ namespace JTRParking
         {
 
             MessageBox.Show("Parking Successfully Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadParking();
 
-            if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_IN)
-                return;
 
             parking_ticket ParkingTicket = new parking_ticket();
             ParkingTicket.Parking = parking;
+             ParkingTicket.Height = this.current_screen_h - (int)(this.current_screen_h * 0.1);
+            if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_IN)
+                ParkingTicket.AutoPrint = true;
+
             ParkingTicket.ShowDialog(this);
             LoadParking();
+
+
 
         }
 
@@ -388,13 +402,14 @@ namespace JTRParking
                 return;
 
             materialTabControl1.TabPages.Remove(tab_settings);
+            materialTabControl1.TabPages.Remove(tab_history);
             materialTabControl1.Refresh();
 
             if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_IN)
             {
                 groupBox_add_parking.Enabled = true;
                 groupBox_find_vehicle.Enabled = false;
-                groupBox_manage_parking.Enabled = false;
+                groupBox_manage_parking.Enabled = true;
 
             }
             else if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_OUT)
@@ -415,7 +430,22 @@ namespace JTRParking
 
         private void timer_date_now_Tick(object sender, EventArgs e)
         {
-            lbl_date_time_now.Text = DateTime.Now.ToString("MM/dd/yyyy") + "\n" + DateTime.Now.ToString("hh:mm:ss tt");
+            lbl_date_time_now.Text = DateTime.Now.ToString("MM/dd/yyyy") + "\n" + DateTime.Now.ToString("HH:mm:ss tt");
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            this.LoadParking();
+        }
+
+        private void parking1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void myListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

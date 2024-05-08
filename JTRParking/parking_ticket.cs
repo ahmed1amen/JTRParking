@@ -20,7 +20,7 @@ namespace JTRParking
     public partial class parking_ticket : Form
     {
         public Parking Parking { get; set; }
-
+        public bool AutoPrint = false;
         public parking_ticket()
         {
             InitializeComponent();
@@ -57,7 +57,7 @@ namespace JTRParking
         }
 
 
-        private void parking_ticket_Load(object sender, EventArgs e)
+        public void parking_ticket_Load(object sender, EventArgs e)
         {
             string parking_ticket_header_title = AppSingleton.Instance.current_settings
                 .Where(s => s.Key == "parking_ticket_header_title").FirstOrDefault().Value;
@@ -73,7 +73,8 @@ namespace JTRParking
             pictureBox1.Image = Image.FromStream(img.Encode().AsStream());
             lbl_DriverName.Text = Parking.DriverName;
             lbl_DriverMobile.Text = Parking.DriverMobile;
-            lbl_InTime.Text = Parking.InTime.ToString("MM/dd/yyyy hh:mm:ss tt");
+            lbl_VehicleType.Text = Parking.VehicleType + " - " + Parking.Id;
+            lbl_InTime.Text = Parking.InTime.ToString("MM/dd/yyyy HH:mm:ss tt");
             lbl_OutTime.Text = Parking.OutTime.ToString();
             lbl_TotalHours.Text = "5h";
             lbl_Amount.Text = Parking.Amount.ToString();
@@ -95,13 +96,25 @@ namespace JTRParking
                 tableLayoutPanel2.RowStyles[9].Height = 0;
 
             }
+
+            if (AppSingleton.Instance.current_user.Role == User.UserRole.EMPLOYEE_IN)
+            {
+                btn_endParking.Enabled = false;
+                if (this.AutoPrint)
+                    timer1.Start();
+            }
+
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public void button2_Click(object sender, EventArgs e)
         {
+
             PrintForm();
 
-            printPreviewDialog1.ShowDialog();
+            //  printPreviewDialog1.ShowDialog();
+            printDocument1.Print();
+            this.Close();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -117,11 +130,7 @@ namespace JTRParking
             string currency_symbol = AppSingleton.Instance.current_settings.Where(s => s.Key == "currency_symbol")
                 .FirstOrDefault().Value;
 
-
-            //
-
             Parking.OutTime = DateTime.Now;
-
 
             TimeSpan duration = Parking.OutTime.Value - Parking.InTime;
             int totalHoursParked = (int)Math.Ceiling(duration.TotalHours);
@@ -159,6 +168,12 @@ namespace JTRParking
 
             btn_endParking.Visible = false;
             btn_endParking.BackColor = Color.Yellow;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            this.button2.PerformClick();
         }
     }
 }

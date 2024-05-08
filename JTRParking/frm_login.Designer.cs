@@ -106,7 +106,6 @@
             txt_username.Size = new Size(360, 48);
             txt_username.TabIndex = 5;
             txt_username.TabStop = false;
-            txt_username.Text = "admin";
             txt_username.TextAlign = HorizontalAlignment.Center;
             txt_username.TrailingIcon = null;
             txt_username.UseSystemPasswordChar = false;
@@ -135,7 +134,6 @@
             txt_password.Size = new Size(360, 48);
             txt_password.TabIndex = 6;
             txt_password.TabStop = false;
-            txt_password.Text = "admin";
             txt_password.TextAlign = HorizontalAlignment.Center;
             txt_password.TrailingIcon = null;
             txt_password.UseSystemPasswordChar = false;
