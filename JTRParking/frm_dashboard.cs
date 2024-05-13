@@ -27,7 +27,7 @@ namespace JTRParking
             // materialSkinManager.ColorScheme=new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500)
 
             parking1.ParkingAdded += ParkingComponent_OnParkingAdded;
-           this.current_screen_h= Screen.GetWorkingArea(this).Height;
+            this.current_screen_h = Screen.GetWorkingArea(this).Height;
 
         }
 
@@ -95,6 +95,11 @@ namespace JTRParking
                     case "hourly_rate":
                         {
                             txt_settings_hourly_rate.Text = setting.Value;
+                            break;
+                        }
+                    case "allowed_minutes":
+                        {
+                            txt_allowed_minutes.Text = setting.Value;
                             break;
                         }
                     case "currency_symbol":
@@ -181,6 +186,13 @@ namespace JTRParking
                                 context.SaveChanges();
                                 break;
                             }
+                        case "allowed_minutes":
+                            {
+                                setting.Value = txt_allowed_minutes.Text;
+                                context.Update(setting);
+                                context.SaveChanges();
+                                break;
+                            }
                         case "currency_symbol":
                             {
                                 setting.Value = txt_settings_currency_symbol.Text;
@@ -242,28 +254,29 @@ namespace JTRParking
         void LoadParking()
         {
 
-          
+
             using (var context = new JTRDbContext())
             {
                 List<Parking> parkings = context.Parkings.Where(p => p.Status == Parking.ParkingStatus.PENDING).ToList();
-               if (parkings.Count != myListView.Items.Count) { 
-                myListView.Clear();
-               
-                foreach (Parking parking in parkings)
+                if (parkings.Count != myListView.Items.Count)
                 {
+                    myListView.Clear();
 
-                    int imageIndex = 0;
-                    if (parking.VehicleType == "Car")
-                        imageIndex = 1;
+                    foreach (Parking parking in parkings)
+                    {
 
-                    ListViewItem item = new ListViewItem(parking.DriverName + " - " + parking.Id, imageIndex);
-                    item.SubItems.Add(parking.Id.ToString());
+                        int imageIndex = 0;
+                        if (parking.VehicleType == "Car")
+                            imageIndex = 1;
 
-                    myListView.Items.Add(item);
+                        ListViewItem item = new ListViewItem(parking.DriverName + " - " + parking.Id, imageIndex);
+                        item.SubItems.Add(parking.Id.ToString());
+
+                        myListView.Items.Add(item);
 
 
-                }
-                groupBox_manage_parking.Text = "Manage Parking " + " - (" + myListView.Items.Count + ")";
+                    }
+                    groupBox_manage_parking.Text = "Manage Parking " + " - (" + myListView.Items.Count + ")";
 
                 }
             }
@@ -278,7 +291,7 @@ namespace JTRParking
             using (var context = new JTRDbContext())
             {
                 List<Parking> parkings = context.Parkings.ToList();
-
+                lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount);
                 foreach (Parking parking in parkings)
                 {
                     ListViewItem item = new ListViewItem(parking.Id.ToString());
@@ -382,7 +395,7 @@ namespace JTRParking
 
             parking_ticket ParkingTicket = new parking_ticket();
             ParkingTicket.Parking = parking;
-             ParkingTicket.Height = this.current_screen_h - (int)(this.current_screen_h * 0.1);
+            ParkingTicket.Height = this.current_screen_h - (int)(this.current_screen_h * 0.1);
             if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.EMPLOYEE_IN)
                 ParkingTicket.AutoPrint = true;
 

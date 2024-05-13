@@ -83,9 +83,11 @@ namespace JTRParking
 
                 if (parkings.Count != 0)
                 {
-                    decimal totalAmount = parkings.Sum(p => p.Amount);
-                    materialLabel3.Text = totalAmount.ToString();
 
+
+                    lbl_motor_count.Text = " Tota Car : " + parkings.Where(p => p.VehicleType == "Car").Count().ToString();
+                    lbl_car_count.Text = " Tota Motor : " + parkings.Where(p => p.VehicleType == "Motor").Count().ToString();
+                    lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount);
                 }
                 else
                     MessageBox.Show("Not Found!", "Results", MessageBoxButtons.OK, MessageBoxIcon.Warning);

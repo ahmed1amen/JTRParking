@@ -50,8 +50,7 @@ namespace JTRParking
             testToolStripMenuItem1 = new ToolStripMenuItem();
             parking_imageList = new ImageList(components);
             tab_history = new TabPage();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            materialLabel1 = new MaterialLabel();
+            materialButton2 = new MaterialButton();
             lv_parking_history = new MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
@@ -64,13 +63,15 @@ namespace JTRParking
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
             columnHeader11 = new ColumnHeader();
-            materialButton2 = new MaterialButton();
+            materialLabel1 = new MaterialLabel();
             materialButton4 = new MaterialButton();
             tab_settings = new TabPage();
             groupBox2 = new GroupBox();
             materialExpansionPanel2 = new MaterialExpansionPanel();
             materialButton1 = new MaterialButton();
             materialExpansionPanel1 = new MaterialExpansionPanel();
+            label4 = new Label();
+            txt_allowed_minutes = new MaterialTextBox2();
             txt_settings_parking_ticket_header_sub_title = new MaterialMultiLineTextBox2();
             label6 = new Label();
             label5 = new Label();
@@ -87,6 +88,7 @@ namespace JTRParking
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
             timer3 = new System.Windows.Forms.Timer(components);
+            lbl_total_amount = new MaterialLabel();
             materialTabControl1.SuspendLayout();
             tab_home.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -95,7 +97,6 @@ namespace JTRParking
             groupBox_manage_parking.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
             tab_history.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             tab_settings.SuspendLayout();
             groupBox2.SuspendLayout();
             materialExpansionPanel2.SuspendLayout();
@@ -125,7 +126,7 @@ namespace JTRParking
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1527, 878);
+            materialTabControl1.Size = new Size(1539, 888);
             materialTabControl1.TabIndex = 1;
             // 
             // tab_home
@@ -140,7 +141,7 @@ namespace JTRParking
             tab_home.Margin = new Padding(2);
             tab_home.Name = "tab_home";
             tab_home.Padding = new Padding(2);
-            tab_home.Size = new Size(1519, 835);
+            tab_home.Size = new Size(1531, 845);
             tab_home.TabIndex = 0;
             tab_home.Text = "Home";
             // 
@@ -157,7 +158,7 @@ namespace JTRParking
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1515, 88);
+            tableLayoutPanel1.Size = new Size(1527, 88);
             tableLayoutPanel1.TabIndex = 28;
             // 
             // lbl_welcome_user
@@ -171,7 +172,7 @@ namespace JTRParking
             lbl_welcome_user.Margin = new Padding(2, 0, 2, 0);
             lbl_welcome_user.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_welcome_user.Name = "lbl_welcome_user";
-            lbl_welcome_user.Size = new Size(721, 88);
+            lbl_welcome_user.Size = new Size(727, 88);
             lbl_welcome_user.TabIndex = 6;
             lbl_welcome_user.Text = "Welcome : Admin";
             // 
@@ -182,11 +183,11 @@ namespace JTRParking
             lbl_date_time_now.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             lbl_date_time_now.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             lbl_date_time_now.HighEmphasis = true;
-            lbl_date_time_now.Location = new Point(727, 0);
+            lbl_date_time_now.Location = new Point(733, 0);
             lbl_date_time_now.Margin = new Padding(2, 0, 2, 0);
             lbl_date_time_now.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_date_time_now.Name = "lbl_date_time_now";
-            lbl_date_time_now.Size = new Size(786, 88);
+            lbl_date_time_now.Size = new Size(792, 88);
             lbl_date_time_now.TabIndex = 7;
             lbl_date_time_now.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -351,73 +352,63 @@ namespace JTRParking
             // tab_history
             // 
             tab_history.BackColor = Color.White;
-            tab_history.Controls.Add(tableLayoutPanel2);
+            tab_history.Controls.Add(lbl_total_amount);
+            tab_history.Controls.Add(materialButton2);
+            tab_history.Controls.Add(lv_parking_history);
+            tab_history.Controls.Add(materialLabel1);
+            tab_history.Controls.Add(materialButton4);
             tab_history.ImageKey = "history.png";
             tab_history.Location = new Point(4, 39);
             tab_history.Margin = new Padding(2);
             tab_history.Name = "tab_history";
             tab_history.Padding = new Padding(2);
-            tab_history.Size = new Size(1519, 835);
+            tab_history.Size = new Size(1531, 845);
             tab_history.TabIndex = 1;
             tab_history.Text = "History";
             // 
-            // tableLayoutPanel2
+            // materialButton2
             // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.38318F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.6168222F));
-            tableLayoutPanel2.Controls.Add(materialLabel1, 0, 0);
-            tableLayoutPanel2.Controls.Add(lv_parking_history, 0, 1);
-            tableLayoutPanel2.Controls.Add(materialButton2, 0, 3);
-            tableLayoutPanel2.Controls.Add(materialButton4, 1, 3);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(2, 2);
-            tableLayoutPanel2.Margin = new Padding(4);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 4;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 549F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 99F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutPanel2.Size = new Size(1515, 831);
-            tableLayoutPanel2.TabIndex = 34;
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            materialLabel1.HighEmphasis = true;
-            materialLabel1.Location = new Point(2, 0);
-            materialLabel1.Margin = new Padding(2, 0, 2, 0);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(138, 24);
-            materialLabel1.TabIndex = 32;
-            materialLabel1.Text = "Parking History";
-            materialLabel1.UseAccent = true;
+            materialButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            materialButton2.AutoSize = false;
+            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton2.BackColor = SystemColors.Control;
+            materialButton2.Density = MaterialButton.MaterialButtonDensity.Default;
+            materialButton2.Depth = 0;
+            materialButton2.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton2.ForeColor = SystemColors.ControlText;
+            materialButton2.HighEmphasis = true;
+            materialButton2.Icon = null;
+            materialButton2.Location = new Point(6, 783);
+            materialButton2.Margin = new Padding(4, 6, 4, 6);
+            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton2.Name = "materialButton2";
+            materialButton2.NoAccentTextColor = Color.Empty;
+            materialButton2.Size = new Size(160, 41);
+            materialButton2.TabIndex = 31;
+            materialButton2.Text = "Refresh";
+            materialButton2.Type = MaterialButton.MaterialButtonType.Contained;
+            materialButton2.UseAccentColor = false;
+            materialButton2.UseVisualStyleBackColor = false;
+            materialButton2.Click += materialButton2_Click;
             // 
             // lv_parking_history
             // 
-            lv_parking_history.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lv_parking_history.AutoSizeTable = false;
             lv_parking_history.BackColor = Color.FromArgb(255, 255, 255);
             lv_parking_history.BorderStyle = BorderStyle.None;
             lv_parking_history.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11 });
-            tableLayoutPanel2.SetColumnSpan(lv_parking_history, 2);
             lv_parking_history.Depth = 0;
+            lv_parking_history.Dock = DockStyle.Top;
             lv_parking_history.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lv_parking_history.FullRowSelect = true;
-            lv_parking_history.Location = new Point(2, 37);
+            lv_parking_history.Location = new Point(2, 26);
             lv_parking_history.Margin = new Padding(2);
             lv_parking_history.MinimumSize = new Size(200, 100);
             lv_parking_history.MouseLocation = new Point(-1, -1);
             lv_parking_history.MouseState = MaterialSkin.MouseState.OUT;
             lv_parking_history.Name = "lv_parking_history";
             lv_parking_history.OwnerDraw = true;
-            tableLayoutPanel2.SetRowSpan(lv_parking_history, 2);
-            lv_parking_history.Size = new Size(1511, 644);
+            lv_parking_history.Size = new Size(1527, 749);
             lv_parking_history.TabIndex = 3;
             lv_parking_history.UseCompatibleStateImageBehavior = false;
             lv_parking_history.View = View.Details;
@@ -486,34 +477,26 @@ namespace JTRParking
             columnHeader11.TextAlign = HorizontalAlignment.Center;
             columnHeader11.Width = 150;
             // 
-            // materialButton2
+            // materialLabel1
             // 
-            materialButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            materialButton2.AutoSize = false;
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.BackColor = SystemColors.Control;
-            materialButton2.Density = MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialButton2.ForeColor = SystemColors.ControlText;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.Location = new Point(4, 784);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
-            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(160, 41);
-            materialButton2.TabIndex = 31;
-            materialButton2.Text = "Refresh";
-            materialButton2.Type = MaterialButton.MaterialButtonType.Contained;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = false;
-            materialButton2.Click += materialButton2_Click;
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Dock = DockStyle.Top;
+            materialLabel1.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            materialLabel1.HighEmphasis = true;
+            materialLabel1.Location = new Point(2, 2);
+            materialLabel1.Margin = new Padding(2, 0, 2, 0);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(138, 24);
+            materialLabel1.TabIndex = 32;
+            materialLabel1.Text = "Parking History";
+            materialLabel1.UseAccent = true;
             // 
             // materialButton4
             // 
-            materialButton4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            materialButton4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             materialButton4.AutoSize = false;
             materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             materialButton4.BackColor = SystemColors.Control;
@@ -523,7 +506,7 @@ namespace JTRParking
             materialButton4.ForeColor = SystemColors.ControlText;
             materialButton4.HighEmphasis = true;
             materialButton4.Icon = null;
-            materialButton4.Location = new Point(1327, 784);
+            materialButton4.Location = new Point(1385, 783);
             materialButton4.Margin = new Padding(4, 6, 4, 6);
             materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton4.Name = "materialButton4";
@@ -544,7 +527,7 @@ namespace JTRParking
             tab_settings.Margin = new Padding(2);
             tab_settings.Name = "tab_settings";
             tab_settings.Padding = new Padding(2);
-            tab_settings.Size = new Size(1519, 835);
+            tab_settings.Size = new Size(1531, 845);
             tab_settings.TabIndex = 3;
             tab_settings.Text = "Settings";
             tab_settings.UseVisualStyleBackColor = true;
@@ -612,6 +595,8 @@ namespace JTRParking
             // 
             materialExpansionPanel1.BackColor = Color.FromArgb(255, 255, 255);
             materialExpansionPanel1.CancelButtonText = "";
+            materialExpansionPanel1.Controls.Add(label4);
+            materialExpansionPanel1.Controls.Add(txt_allowed_minutes);
             materialExpansionPanel1.Controls.Add(txt_settings_parking_ticket_header_sub_title);
             materialExpansionPanel1.Controls.Add(label6);
             materialExpansionPanel1.Controls.Add(label5);
@@ -639,6 +624,46 @@ namespace JTRParking
             materialExpansionPanel1.Title = "General Settings";
             materialExpansionPanel1.ValidationButtonText = "";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(55, 193);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(131, 40);
+            label4.TabIndex = 36;
+            label4.Text = "Allowed Minutes \r\nAfter First Hour";
+            // 
+            // txt_allowed_minutes
+            // 
+            txt_allowed_minutes.AnimateReadOnly = false;
+            txt_allowed_minutes.BackgroundImageLayout = ImageLayout.None;
+            txt_allowed_minutes.CharacterCasing = CharacterCasing.Normal;
+            txt_allowed_minutes.Depth = 0;
+            txt_allowed_minutes.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_allowed_minutes.HideSelection = true;
+            txt_allowed_minutes.LeadingIcon = null;
+            txt_allowed_minutes.Location = new Point(221, 193);
+            txt_allowed_minutes.Margin = new Padding(2);
+            txt_allowed_minutes.MaxLength = 32767;
+            txt_allowed_minutes.MouseState = MaterialSkin.MouseState.OUT;
+            txt_allowed_minutes.Name = "txt_allowed_minutes";
+            txt_allowed_minutes.PasswordChar = '\0';
+            txt_allowed_minutes.PrefixSuffixText = null;
+            txt_allowed_minutes.ReadOnly = false;
+            txt_allowed_minutes.RightToLeft = RightToLeft.No;
+            txt_allowed_minutes.SelectedText = "";
+            txt_allowed_minutes.SelectionLength = 0;
+            txt_allowed_minutes.SelectionStart = 0;
+            txt_allowed_minutes.ShortcutsEnabled = true;
+            txt_allowed_minutes.Size = new Size(305, 48);
+            txt_allowed_minutes.TabIndex = 35;
+            txt_allowed_minutes.TabStop = false;
+            txt_allowed_minutes.TextAlign = HorizontalAlignment.Left;
+            txt_allowed_minutes.TrailingIcon = null;
+            txt_allowed_minutes.UseSystemPasswordChar = false;
+            // 
             // txt_settings_parking_ticket_header_sub_title
             // 
             txt_settings_parking_ticket_header_sub_title.AnimateReadOnly = false;
@@ -647,7 +672,7 @@ namespace JTRParking
             txt_settings_parking_ticket_header_sub_title.Depth = 0;
             txt_settings_parking_ticket_header_sub_title.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_parking_ticket_header_sub_title.HideSelection = true;
-            txt_settings_parking_ticket_header_sub_title.Location = new Point(221, 345);
+            txt_settings_parking_ticket_header_sub_title.Location = new Point(221, 404);
             txt_settings_parking_ticket_header_sub_title.Margin = new Padding(2);
             txt_settings_parking_ticket_header_sub_title.MaxLength = 32767;
             txt_settings_parking_ticket_header_sub_title.MouseState = MaterialSkin.MouseState.OUT;
@@ -669,7 +694,7 @@ namespace JTRParking
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(2, 386);
+            label6.Location = new Point(2, 445);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
             label6.Size = new Size(166, 20);
@@ -680,7 +705,7 @@ namespace JTRParking
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(30, 290);
+            label5.Location = new Point(30, 349);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new Size(140, 20);
@@ -696,7 +721,7 @@ namespace JTRParking
             txt_settings_parking_ticket_header_title.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_parking_ticket_header_title.HideSelection = true;
             txt_settings_parking_ticket_header_title.LeadingIcon = null;
-            txt_settings_parking_ticket_header_title.Location = new Point(222, 272);
+            txt_settings_parking_ticket_header_title.Location = new Point(222, 331);
             txt_settings_parking_ticket_header_title.Margin = new Padding(2);
             txt_settings_parking_ticket_header_title.MaxLength = 32767;
             txt_settings_parking_ticket_header_title.MouseState = MaterialSkin.MouseState.OUT;
@@ -720,7 +745,7 @@ namespace JTRParking
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(42, 216);
+            label3.Location = new Point(42, 275);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(127, 20);
@@ -760,7 +785,7 @@ namespace JTRParking
             txt_settings_currency_symbol.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_currency_symbol.HideSelection = true;
             txt_settings_currency_symbol.LeadingIcon = null;
-            txt_settings_currency_symbol.Location = new Point(222, 199);
+            txt_settings_currency_symbol.Location = new Point(222, 258);
             txt_settings_currency_symbol.Margin = new Padding(2);
             txt_settings_currency_symbol.MaxLength = 32767;
             txt_settings_currency_symbol.MouseState = MaterialSkin.MouseState.OUT;
@@ -883,13 +908,28 @@ namespace JTRParking
             timer3.Interval = 3000;
             timer3.Tick += timer3_Tick;
             // 
+            // lbl_total_amount
+            // 
+            lbl_total_amount.Depth = 0;
+            lbl_total_amount.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lbl_total_amount.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lbl_total_amount.HighEmphasis = true;
+            lbl_total_amount.Location = new Point(395, 783);
+            lbl_total_amount.Margin = new Padding(2, 0, 2, 0);
+            lbl_total_amount.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_total_amount.Name = "lbl_total_amount";
+            lbl_total_amount.Size = new Size(799, 60);
+            lbl_total_amount.TabIndex = 34;
+            lbl_total_amount.TextAlign = ContentAlignment.TopCenter;
+            lbl_total_amount.UseAccent = true;
+            // 
             // frm_dashboard
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1529, 944);
+            ClientSize = new Size(1541, 954);
             Controls.Add(materialTabControl1);
             DrawerIsOpen = true;
             DrawerShowIconsWhenHidden = true;
@@ -911,8 +951,7 @@ namespace JTRParking
             groupBox_manage_parking.ResumeLayout(false);
             contextMenuStrip1.ResumeLayout(false);
             tab_history.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
+            tab_history.PerformLayout();
             tab_settings.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             materialExpansionPanel2.ResumeLayout(false);
@@ -961,7 +1000,6 @@ namespace JTRParking
         private TableLayoutPanel tableLayoutPanel1;
         private MaterialLabel lbl_date_time_now;
         private System.Windows.Forms.Timer timer_date_now;
-        private TableLayoutPanel tableLayoutPanel2;
         private MaterialListView lv_parking_history;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
@@ -979,6 +1017,9 @@ namespace JTRParking
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private Label label4;
+        private MaterialTextBox2 txt_allowed_minutes;
+        private MaterialLabel lbl_total_amount;
     }
 }
 

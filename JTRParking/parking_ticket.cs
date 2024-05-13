@@ -76,7 +76,15 @@ namespace JTRParking
             lbl_VehicleType.Text = Parking.VehicleType + " - " + Parking.Id;
             lbl_InTime.Text = Parking.InTime.ToString("MM/dd/yyyy HH:mm:ss tt");
             lbl_OutTime.Text = Parking.OutTime.ToString();
-            lbl_TotalHours.Text = "5h";
+            lbl_TotalHours.Text = "-";
+            if (Parking.OutTime != null)
+            {
+
+                TimeSpan duration = Parking.OutTime.Value - Parking.InTime;
+                int totalHoursParked = (int)Math.Ceiling(duration.TotalHours);
+                lbl_TotalHours.Text = totalHoursParked.ToString() + " h";
+
+            }
             lbl_Amount.Text = Parking.Amount.ToString();
 
             btn_endParking.Visible = false;

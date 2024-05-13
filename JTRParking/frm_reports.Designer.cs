@@ -34,17 +34,20 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             comboBox1 = new ComboBox();
-            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            lbl_car_count = new MaterialSkin.Controls.MaterialLabel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
+            lbl_total_amount = new MaterialSkin.Controls.MaterialLabel();
+            lbl_motor_count = new MaterialSkin.Controls.MaterialLabel();
+            tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dateTimePickerStart
             // 
             dateTimePickerStart.CalendarFont = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            dateTimePickerStart.Location = new Point(110, 108);
+            dateTimePickerStart.Location = new Point(125, 171);
             dateTimePickerStart.Name = "dateTimePickerStart";
             dateTimePickerStart.Size = new Size(384, 27);
             dateTimePickerStart.TabIndex = 0;
@@ -52,7 +55,7 @@
             // dateTimePickerEnd
             // 
             dateTimePickerEnd.CalendarFont = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            dateTimePickerEnd.Location = new Point(110, 163);
+            dateTimePickerEnd.Location = new Point(125, 239);
             dateTimePickerEnd.Name = "dateTimePickerEnd";
             dateTimePickerEnd.Size = new Size(384, 27);
             dateTimePickerEnd.TabIndex = 1;
@@ -66,7 +69,7 @@
             materialButton1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(525, 141);
+            materialButton1.Location = new Point(558, 150);
             materialButton1.Margin = new Padding(5);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -83,7 +86,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(36, 112);
+            label1.Location = new Point(62, 178);
             label1.Name = "label1";
             label1.Size = new Size(46, 20);
             label1.TabIndex = 4;
@@ -93,7 +96,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(36, 168);
+            label2.Location = new Point(73, 244);
             label2.Name = "label2";
             label2.Size = new Size(26, 20);
             label2.TabIndex = 5;
@@ -103,91 +106,111 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(36, 231);
+            label3.Location = new Point(67, 108);
             label3.Name = "label3";
             label3.Size = new Size(41, 20);
             label3.TabIndex = 7;
             label3.Text = "User";
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            materialLabel1.Location = new Point(171, 372);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(316, 58);
-            materialLabel1.TabIndex = 8;
-            materialLabel1.Text = "Total Amounts";
-            // 
-            // materialLabel2
-            // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            materialLabel2.Location = new Point(171, 679);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(304, 58);
-            materialLabel2.TabIndex = 9;
-            materialLabel2.Text = "Total Vehicles";
             // 
             // comboBox1
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(110, 221);
+            comboBox1.Location = new Point(125, 88);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(384, 49);
             comboBox1.TabIndex = 11;
             // 
-            // materialLabel3
+            // lbl_car_count
             // 
-            materialLabel3.AutoSize = true;
-            materialLabel3.Depth = 0;
-            materialLabel3.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel3.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            materialLabel3.Location = new Point(275, 502);
-            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(109, 58);
-            materialLabel3.TabIndex = 12;
-            materialLabel3.Text = "5555";
+            lbl_car_count.Depth = 0;
+            lbl_car_count.Dock = DockStyle.Fill;
+            lbl_car_count.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lbl_car_count.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lbl_car_count.HighEmphasis = true;
+            lbl_car_count.Location = new Point(2, 327);
+            lbl_car_count.Margin = new Padding(2, 0, 2, 0);
+            lbl_car_count.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_car_count.Name = "lbl_car_count";
+            lbl_car_count.Size = new Size(808, 100);
+            lbl_car_count.TabIndex = 12;
+            lbl_car_count.Text = "Total Cars : ";
             // 
-            // materialLabel4
+            // tableLayoutPanel1
             // 
-            materialLabel4.AutoSize = true;
-            materialLabel4.Depth = 0;
-            materialLabel4.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            materialLabel4.Location = new Point(255, 809);
-            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(136, 58);
-            materialLabel4.TabIndex = 13;
-            materialLabel4.Text = "99999";
+            tableLayoutPanel1.BackColor = SystemColors.Control;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(lbl_total_amount, 0, 3);
+            tableLayoutPanel1.Controls.Add(lbl_motor_count, 0, 2);
+            tableLayoutPanel1.Controls.Add(lbl_car_count, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 72);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 99.99999F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 119F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(812, 646);
+            tableLayoutPanel1.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.Control;
+            panel1.Controls.Add(materialButton1);
+            panel1.Controls.Add(dateTimePickerStart);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(dateTimePickerEnd);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(806, 321);
+            panel1.TabIndex = 14;
+            // 
+            // lbl_total_amount
+            // 
+            lbl_total_amount.Depth = 0;
+            lbl_total_amount.Dock = DockStyle.Fill;
+            lbl_total_amount.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lbl_total_amount.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lbl_total_amount.HighEmphasis = true;
+            lbl_total_amount.Location = new Point(2, 527);
+            lbl_total_amount.Margin = new Padding(2, 0, 2, 0);
+            lbl_total_amount.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_total_amount.Name = "lbl_total_amount";
+            lbl_total_amount.Size = new Size(808, 119);
+            lbl_total_amount.TabIndex = 14;
+            lbl_total_amount.Text = "Tota Amount : ";
+            // 
+            // lbl_motor_count
+            // 
+            lbl_motor_count.Depth = 0;
+            lbl_motor_count.Dock = DockStyle.Fill;
+            lbl_motor_count.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lbl_motor_count.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
+            lbl_motor_count.HighEmphasis = true;
+            lbl_motor_count.Location = new Point(2, 427);
+            lbl_motor_count.Margin = new Padding(2, 0, 2, 0);
+            lbl_motor_count.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_motor_count.Name = "lbl_motor_count";
+            lbl_motor_count.Size = new Size(808, 100);
+            lbl_motor_count.TabIndex = 13;
+            lbl_motor_count.Text = "Total Motor : ";
             // 
             // frm_reports
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(714, 1001);
-            Controls.Add(materialLabel4);
-            Controls.Add(materialLabel3);
-            Controls.Add(comboBox1);
-            Controls.Add(materialLabel2);
-            Controls.Add(materialLabel1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(materialButton1);
-            Controls.Add(dateTimePickerEnd);
-            Controls.Add(dateTimePickerStart);
+            ClientSize = new Size(818, 721);
+            Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.Sizable;
             FormStyle = FormStyles.ActionBar_48;
             MaximizeBox = false;
@@ -200,8 +223,10 @@
             Text = "Reports";
             TopMost = true;
             Load += frm_reports_Load;
+            tableLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -212,10 +237,11 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private ComboBox comboBox1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel lbl_car_count;
+        private TableLayoutPanel tableLayoutPanel1;
+        private MaterialSkin.Controls.MaterialLabel lbl_total_amount;
+        private MaterialSkin.Controls.MaterialLabel lbl_motor_count;
+        private Panel panel1;
     }
 }
