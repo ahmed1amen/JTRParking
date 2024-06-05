@@ -50,6 +50,11 @@ namespace JTRParking
             testToolStripMenuItem1 = new ToolStripMenuItem();
             parking_imageList = new ImageList(components);
             tab_history = new TabPage();
+            dateTimePickerStart = new DateTimePicker();
+            dateTimePickerEnd = new DateTimePicker();
+            label7 = new Label();
+            label8 = new Label();
+            lbl_total_amount = new MaterialLabel();
             materialButton2 = new MaterialButton();
             lv_parking_history = new MaterialListView();
             columnHeader1 = new ColumnHeader();
@@ -88,7 +93,6 @@ namespace JTRParking
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
             timer3 = new System.Windows.Forms.Timer(components);
-            lbl_total_amount = new MaterialLabel();
             materialTabControl1.SuspendLayout();
             tab_home.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -352,6 +356,10 @@ namespace JTRParking
             // tab_history
             // 
             tab_history.BackColor = Color.White;
+            tab_history.Controls.Add(dateTimePickerStart);
+            tab_history.Controls.Add(dateTimePickerEnd);
+            tab_history.Controls.Add(label7);
+            tab_history.Controls.Add(label8);
             tab_history.Controls.Add(lbl_total_amount);
             tab_history.Controls.Add(materialButton2);
             tab_history.Controls.Add(lv_parking_history);
@@ -366,6 +374,57 @@ namespace JTRParking
             tab_history.TabIndex = 1;
             tab_history.Text = "History";
             // 
+            // dateTimePickerStart
+            // 
+            dateTimePickerStart.CalendarFont = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            dateTimePickerStart.Location = new Point(236, 797);
+            dateTimePickerStart.Name = "dateTimePickerStart";
+            dateTimePickerStart.Size = new Size(189, 27);
+            dateTimePickerStart.TabIndex = 35;
+            // 
+            // dateTimePickerEnd
+            // 
+            dateTimePickerEnd.CalendarFont = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            dateTimePickerEnd.Location = new Point(468, 797);
+            dateTimePickerEnd.Name = "dateTimePickerEnd";
+            dateTimePickerEnd.Size = new Size(189, 27);
+            dateTimePickerEnd.TabIndex = 36;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(184, 804);
+            label7.Name = "label7";
+            label7.Size = new Size(46, 20);
+            label7.TabIndex = 37;
+            label7.Text = "From";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(436, 804);
+            label8.Name = "label8";
+            label8.Size = new Size(26, 20);
+            label8.TabIndex = 38;
+            label8.Text = "To";
+            // 
+            // lbl_total_amount
+            // 
+            lbl_total_amount.Depth = 0;
+            lbl_total_amount.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lbl_total_amount.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lbl_total_amount.HighEmphasis = true;
+            lbl_total_amount.Location = new Point(708, 787);
+            lbl_total_amount.Margin = new Padding(2, 0, 2, 0);
+            lbl_total_amount.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_total_amount.Name = "lbl_total_amount";
+            lbl_total_amount.Size = new Size(548, 50);
+            lbl_total_amount.TabIndex = 34;
+            lbl_total_amount.TextAlign = ContentAlignment.TopCenter;
+            lbl_total_amount.UseAccent = true;
+            // 
             // materialButton2
             // 
             materialButton2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -378,7 +437,7 @@ namespace JTRParking
             materialButton2.ForeColor = SystemColors.ControlText;
             materialButton2.HighEmphasis = true;
             materialButton2.Icon = null;
-            materialButton2.Location = new Point(6, 783);
+            materialButton2.Location = new Point(6, 793);
             materialButton2.Margin = new Padding(4, 6, 4, 6);
             materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton2.Name = "materialButton2";
@@ -908,21 +967,6 @@ namespace JTRParking
             timer3.Interval = 3000;
             timer3.Tick += timer3_Tick;
             // 
-            // lbl_total_amount
-            // 
-            lbl_total_amount.Depth = 0;
-            lbl_total_amount.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lbl_total_amount.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            lbl_total_amount.HighEmphasis = true;
-            lbl_total_amount.Location = new Point(395, 783);
-            lbl_total_amount.Margin = new Padding(2, 0, 2, 0);
-            lbl_total_amount.MouseState = MaterialSkin.MouseState.HOVER;
-            lbl_total_amount.Name = "lbl_total_amount";
-            lbl_total_amount.Size = new Size(799, 60);
-            lbl_total_amount.TabIndex = 34;
-            lbl_total_amount.TextAlign = ContentAlignment.TopCenter;
-            lbl_total_amount.UseAccent = true;
-            // 
             // frm_dashboard
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
@@ -1020,6 +1064,10 @@ namespace JTRParking
         private Label label4;
         private MaterialTextBox2 txt_allowed_minutes;
         private MaterialLabel lbl_total_amount;
+        private DateTimePicker dateTimePickerStart;
+        private DateTimePicker dateTimePickerEnd;
+        private Label label7;
+        private Label label8;
     }
 }
 

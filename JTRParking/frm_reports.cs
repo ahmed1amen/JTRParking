@@ -50,9 +50,12 @@ namespace JTRParking
             dateTimePickerStart.CustomFormat = "MM/dd/yyyy hh:mm:ss tt";
             dateTimePickerEnd.Format = DateTimePickerFormat.Custom;
             dateTimePickerEnd.CustomFormat = "MM/dd/yyyy hh:mm:ss tt";
+             
+            dateTimePickerStart.Value = DateTime.Today;
 
-            dateTimePickerStart.Value = DateTime.Now;
-            dateTimePickerEnd.Value = DateTime.Now;
+            // Set dateTimePickerEnd to the end of today (23:59:59)
+            dateTimePickerEnd.Value = DateTime.Today.AddDays(1).AddTicks(-1);
+
 
 
         }
@@ -78,7 +81,7 @@ namespace JTRParking
             {
 
                 List<Parking> parkings = context.Parkings
-                    .Where(p => p.CreatedAt >= startTime && p.CreatedAt <= endTime)
+                    .Where(p => p.OutTime >= startTime && p.CreatedAt <= endTime)
                     .Where(p => p.CreatedBy == (ulong)user_id).ToList();
 
                 if (parkings.Count != 0)

@@ -129,11 +129,11 @@
             lbl_car_count.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
             lbl_car_count.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
             lbl_car_count.HighEmphasis = true;
-            lbl_car_count.Location = new Point(2, 327);
+            lbl_car_count.Location = new Point(2, 390);
             lbl_car_count.Margin = new Padding(2, 0, 2, 0);
             lbl_car_count.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_car_count.Name = "lbl_car_count";
-            lbl_car_count.Size = new Size(808, 100);
+            lbl_car_count.Size = new Size(844, 100);
             lbl_car_count.TabIndex = 12;
             lbl_car_count.Text = "Total Cars : ";
             // 
@@ -150,12 +150,11 @@
             tableLayoutPanel1.Location = new Point(3, 72);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 99.99999F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 119F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(812, 646);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 150F));
+            tableLayoutPanel1.Size = new Size(848, 740);
             tableLayoutPanel1.TabIndex = 13;
             // 
             // panel1
@@ -171,7 +170,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(806, 321);
+            panel1.Size = new Size(842, 384);
             panel1.TabIndex = 14;
             // 
             // lbl_total_amount
@@ -181,11 +180,11 @@
             lbl_total_amount.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
             lbl_total_amount.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
             lbl_total_amount.HighEmphasis = true;
-            lbl_total_amount.Location = new Point(2, 527);
+            lbl_total_amount.Location = new Point(2, 590);
             lbl_total_amount.Margin = new Padding(2, 0, 2, 0);
             lbl_total_amount.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_total_amount.Name = "lbl_total_amount";
-            lbl_total_amount.Size = new Size(808, 119);
+            lbl_total_amount.Size = new Size(844, 150);
             lbl_total_amount.TabIndex = 14;
             lbl_total_amount.Text = "Tota Amount : ";
             // 
@@ -196,11 +195,11 @@
             lbl_motor_count.Font = new Font("Roboto Light", 60F, FontStyle.Regular, GraphicsUnit.Pixel);
             lbl_motor_count.FontType = MaterialSkin.MaterialSkinManager.fontType.H2;
             lbl_motor_count.HighEmphasis = true;
-            lbl_motor_count.Location = new Point(2, 427);
+            lbl_motor_count.Location = new Point(2, 490);
             lbl_motor_count.Margin = new Padding(2, 0, 2, 0);
             lbl_motor_count.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_motor_count.Name = "lbl_motor_count";
-            lbl_motor_count.Size = new Size(808, 100);
+            lbl_motor_count.Size = new Size(844, 100);
             lbl_motor_count.TabIndex = 13;
             lbl_motor_count.Text = "Total Motor : ";
             // 
@@ -209,9 +208,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(818, 721);
+            ClientSize = new Size(854, 815);
             Controls.Add(tableLayoutPanel1);
-            FormBorderStyle = FormBorderStyle.Sizable;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             FormStyle = FormStyles.ActionBar_48;
             MaximizeBox = false;
             MinimizeBox = false;

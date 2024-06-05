@@ -37,6 +37,17 @@ namespace JTRParking
         {
             lbl_welcome_user.Text = "Welcome : " + AppSingleton.Instance.current_user.Name;
 
+            dateTimePickerStart.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStart.CustomFormat = "MM/dd/yyyy hh:mm:ss tt";
+            dateTimePickerEnd.Format = DateTimePickerFormat.Custom;
+            dateTimePickerEnd.CustomFormat = "MM/dd/yyyy hh:mm:ss tt";
+
+            // Set dateTimePickerStart to the start of today (00:00:00)
+            dateTimePickerStart.Value = DateTime.Today;
+
+            // Set dateTimePickerEnd to the end of today (23:59:59)
+            dateTimePickerEnd.Value = DateTime.Today.AddDays(1).AddTicks(-1);
+
 
             LoadSettings();
             LoadParking();
@@ -285,12 +296,16 @@ namespace JTRParking
 
         private void materialButton2_Click(object sender, EventArgs e)
         {
+            DateTime startTime = dateTimePickerStart.Value;
+            DateTime endTime = dateTimePickerEnd.Value;
 
             lv_parking_history.Items.Clear();
             lv_parking_history.GridLines = true;
             using (var context = new JTRDbContext())
             {
-                List<Parking> parkings = context.Parkings.ToList();
+                List<Parking> parkings = context.Parkings
+                    .Where(p => p.OutTime >= startTime && p.OutTime <= endTime).ToList();
+
                 lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount);
                 foreach (Parking parking in parkings)
                 {
