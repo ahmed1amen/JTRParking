@@ -47,10 +47,11 @@ namespace JTRParking
 
 
             dateTimePickerStart.Format = DateTimePickerFormat.Custom;
-            dateTimePickerStart.CustomFormat = "MM/dd/yyyy hh:mm:ss tt";
+            dateTimePickerStart.CustomFormat = "MM/dd/yyyy HH:mm:ss";
             dateTimePickerEnd.Format = DateTimePickerFormat.Custom;
-            dateTimePickerEnd.CustomFormat = "MM/dd/yyyy hh:mm:ss tt";
-             
+            dateTimePickerEnd.CustomFormat = "MM/dd/yyyy HH:mm:ss";
+
+
             dateTimePickerStart.Value = DateTime.Today;
 
             // Set dateTimePickerEnd to the end of today (23:59:59)
