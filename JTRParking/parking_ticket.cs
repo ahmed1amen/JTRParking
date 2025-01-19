@@ -141,7 +141,7 @@ namespace JTRParking
             Parking.OutTime = DateTime.Now;
 
             TimeSpan duration = Parking.OutTime.Value - Parking.InTime;
-           // int totalHoursParked = (int)Math.Ceiling(duration.TotalHours);
+            // int totalHoursParked = (int)Math.Ceiling(duration.TotalHours);
 
 
             // Calculate total hours parked, considering first 5 minutes of each hour as free
@@ -155,37 +155,40 @@ namespace JTRParking
 
             decimal rate = 0;
 
-           
-                rate += first_hour_rate;
-                if (totalHoursParked > 1)
-                {
-                    rate += (totalHoursParked - 1) * hourly_rate;
-                }
-             
 
-                Parking.Amount = rate;
-                Parking.Status = Parking.ParkingStatus.COMPLETED;
-                Parking.CreatedBy = (ulong)AppSingleton.Instance.current_user.Id;
-                lbl_TotalHours.Text = totalHoursParked.ToString() + " h";
+            rate += first_hour_rate;
+            if (totalHoursParked > 1)
+            {
+                rate += (totalHoursParked - 1) * hourly_rate;
+            }
+
+
+            Parking.Amount = rate;
+            Parking.Status = Parking.ParkingStatus.COMPLETED;
+            Parking.CreatedBy = (ulong)AppSingleton.Instance.current_user.Id;
+            lbl_TotalHours.Text = totalHoursParked.ToString() + " h";
             if (totalHoursParked > 0)
-            
+
                 lbl_Amount.Text = rate.ToString() + " " + currency_symbol;
             else
+            {
                 lbl_Amount.Text = "0 " + currency_symbol;
+                Parking.Amount = 0;
+            }
 
             lbl_OutTime.Text = Parking.OutTime.ToString();
 
 
-                tableLayoutPanel2.RowStyles[7].SizeType = SizeType.Absolute;
-                tableLayoutPanel2.RowStyles[7].Height = 60;
+            tableLayoutPanel2.RowStyles[7].SizeType = SizeType.Absolute;
+            tableLayoutPanel2.RowStyles[7].Height = 60;
 
-                tableLayoutPanel2.RowStyles[8].SizeType = SizeType.Absolute;
-                tableLayoutPanel2.RowStyles[8].Height = 60;
+            tableLayoutPanel2.RowStyles[8].SizeType = SizeType.Absolute;
+            tableLayoutPanel2.RowStyles[8].Height = 60;
 
-                tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
-                tableLayoutPanel2.RowStyles[9].Height = 60;
-                
-           
+            tableLayoutPanel2.RowStyles[9].SizeType = SizeType.Absolute;
+            tableLayoutPanel2.RowStyles[9].Height = 60;
+
+
 
             using (var context = new JTRDbContext())
             {
