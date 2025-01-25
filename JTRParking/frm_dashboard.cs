@@ -306,7 +306,7 @@ namespace JTRParking
                 List<Parking> parkings = context.Parkings
                     .Where(p => p.OutTime >= startTime && p.OutTime <= endTime).ToList();
 
-                lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount);
+                lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount) + " Total Cars : " + parkings.Count;
                 foreach (Parking parking in parkings)
                 {
                     ListViewItem item = new ListViewItem(parking.Id.ToString());

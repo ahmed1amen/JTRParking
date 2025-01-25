@@ -38,6 +38,7 @@
             lbl_car_count = new MaterialSkin.Controls.MaterialLabel();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             lbl_total_amount = new MaterialSkin.Controls.MaterialLabel();
             lbl_motor_count = new MaterialSkin.Controls.MaterialLabel();
             tableLayoutPanel1.SuspendLayout();
@@ -72,7 +73,7 @@
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
             materialButton1.Location = new Point(488, 112);
-            materialButton1.Margin = new Padding(4, 4, 4, 4);
+            materialButton1.Margin = new Padding(4);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
             materialButton1.NoAccentTextColor = Color.Empty;
@@ -119,7 +120,7 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(109, 66);
+            comboBox1.Location = new Point(109, 67);
             comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(336, 40);
@@ -136,7 +137,7 @@
             lbl_car_count.Margin = new Padding(2, 0, 2, 0);
             lbl_car_count.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_car_count.Name = "lbl_car_count";
-            lbl_car_count.Size = new Size(755, 75);
+            lbl_car_count.Size = new Size(819, 75);
             lbl_car_count.TabIndex = 12;
             lbl_car_count.Text = "Total Cars : ";
             // 
@@ -150,7 +151,7 @@
             tableLayoutPanel1.Controls.Add(lbl_motor_count, 0, 2);
             tableLayoutPanel1.Controls.Add(lbl_car_count, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
-            tableLayoutPanel1.Location = new Point(3, 84);
+            tableLayoutPanel1.Location = new Point(3, 240);
             tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
@@ -158,12 +159,13 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 112F));
-            tableLayoutPanel1.Size = new Size(759, 631);
+            tableLayoutPanel1.Size = new Size(823, 631);
             tableLayoutPanel1.TabIndex = 13;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.Control;
+            panel1.Controls.Add(materialCheckbox1);
             panel1.Controls.Add(materialButton1);
             panel1.Controls.Add(dateTimePickerStart);
             panel1.Controls.Add(comboBox1);
@@ -175,8 +177,26 @@
             panel1.Location = new Point(3, 2);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(753, 365);
+            panel1.Size = new Size(817, 365);
             panel1.TabIndex = 14;
+            // 
+            // materialCheckbox1
+            // 
+            materialCheckbox1.AutoSize = true;
+            materialCheckbox1.Depth = 0;
+            materialCheckbox1.Location = new Point(448, 67);
+            materialCheckbox1.Margin = new Padding(0);
+            materialCheckbox1.MouseLocation = new Point(-1, -1);
+            materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCheckbox1.Name = "materialCheckbox1";
+            materialCheckbox1.ReadOnly = false;
+            materialCheckbox1.Ripple = true;
+            materialCheckbox1.Size = new Size(53, 37);
+            materialCheckbox1.TabIndex = 12;
+            materialCheckbox1.Text = "All";
+            materialCheckbox1.TextAlign = ContentAlignment.TopCenter;
+            materialCheckbox1.UseVisualStyleBackColor = true;
+            materialCheckbox1.CheckedChanged += materialCheckbox1_CheckedChanged;
             // 
             // lbl_total_amount
             // 
@@ -189,7 +209,7 @@
             lbl_total_amount.Margin = new Padding(2, 0, 2, 0);
             lbl_total_amount.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_total_amount.Name = "lbl_total_amount";
-            lbl_total_amount.Size = new Size(755, 112);
+            lbl_total_amount.Size = new Size(819, 112);
             lbl_total_amount.TabIndex = 14;
             lbl_total_amount.Text = "Tota Amount : ";
             // 
@@ -204,7 +224,7 @@
             lbl_motor_count.Margin = new Padding(2, 0, 2, 0);
             lbl_motor_count.MouseState = MaterialSkin.MouseState.HOVER;
             lbl_motor_count.Name = "lbl_motor_count";
-            lbl_motor_count.Size = new Size(755, 75);
+            lbl_motor_count.Size = new Size(819, 75);
             lbl_motor_count.TabIndex = 13;
             lbl_motor_count.Text = "Total Motor : ";
             // 
@@ -213,7 +233,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(765, 717);
+            ClientSize = new Size(829, 873);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             FormStyle = FormStyles.ActionBar_48;
@@ -248,5 +268,6 @@
         private MaterialSkin.Controls.MaterialLabel lbl_total_amount;
         private MaterialSkin.Controls.MaterialLabel lbl_motor_count;
         private Panel panel1;
+        private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
     }
 }

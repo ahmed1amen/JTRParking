@@ -39,6 +39,7 @@ namespace JTRParking
 
         private void frm_reports_Load(object sender, EventArgs e)
         {
+
             using (var context = new JTRDbContext())
             {
                 comboBox1.DataSource = context.Users.ToList();
@@ -52,10 +53,8 @@ namespace JTRParking
             dateTimePickerEnd.CustomFormat = "MM/dd/yyyy HH:mm:ss";
 
 
-            dateTimePickerStart.Value = DateTime.Today;
-
-            // Set dateTimePickerEnd to the end of today (23:59:59)
-            dateTimePickerEnd.Value = DateTime.Today.AddDays(1).AddTicks(-1);
+            dateTimePickerStart.Value = DateTime.Today.AddHours(8);
+            dateTimePickerEnd.Value = DateTime.Today.AddDays(1).AddHours(8).AddSeconds(-1);
 
 
 
@@ -67,7 +66,7 @@ namespace JTRParking
             DateTime endTime = dateTimePickerEnd.Value;
             User selectedUser;
             int user_id = 0;
-            if (comboBox1.SelectedItem != null)
+            if (comboBox1.SelectedItem != null && materialCheckbox1.Checked == false)
             {
 
                 selectedUser = (User)comboBox1.SelectedItem;
@@ -80,15 +79,16 @@ namespace JTRParking
             // var parkingsWithinTimeRange = parkings.Where(p => p.CreatedAt >= startTime && p.CreatedAt <= endTime).ToList();
             using (var context = new JTRDbContext())
             {
+                IQueryable<Parking> query = context.Parkings
+                     .Where(p => p.OutTime >= startTime && p.CreatedAt <= endTime);
 
-                List<Parking> parkings = context.Parkings
-                    .Where(p => p.OutTime >= startTime && p.CreatedAt <= endTime)
-                    .Where(p => p.CreatedBy == (ulong)user_id).ToList();
+                if (materialCheckbox1.Checked == false)
+                    query.Where(p => p.CreatedBy == (ulong)user_id).ToList();
 
+
+                List<Parking> parkings = query.ToList();
                 if (parkings.Count != 0)
                 {
-
-
                     lbl_motor_count.Text = " Tota Car : " + parkings.Where(p => p.VehicleType == "Car").Count().ToString();
                     lbl_car_count.Text = " Tota Motor : " + parkings.Where(p => p.VehicleType == "Motor").Count().ToString();
                     lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount);
@@ -99,6 +99,11 @@ namespace JTRParking
 
 
             }
+        }
+
+        private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = !materialCheckbox1.Checked;
         }
     }
 }
