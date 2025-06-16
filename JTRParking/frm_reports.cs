@@ -53,8 +53,9 @@ namespace JTRParking
             dateTimePickerEnd.CustomFormat = "MM/dd/yyyy HH:mm:ss";
 
 
-            dateTimePickerStart.Value = DateTime.Today.AddHours(8);
-            dateTimePickerEnd.Value = DateTime.Today.AddDays(1).AddHours(8).AddSeconds(-1);
+            dateTimePickerStart.Value = DateTime.Today.AddHours(8).AddMinutes(20);
+            dateTimePickerEnd.Value = DateTime.Today.AddDays(1).AddHours(8).AddMinutes(19).AddSeconds(59);
+
 
 
 
@@ -65,7 +66,7 @@ namespace JTRParking
             DateTime startTime = dateTimePickerStart.Value;
             DateTime endTime = dateTimePickerEnd.Value;
             User selectedUser;
-            int user_id = 0;
+            ulong user_id = 0;
             if (comboBox1.SelectedItem != null && materialCheckbox1.Checked == false)
             {
 
@@ -83,7 +84,7 @@ namespace JTRParking
                      .Where(p => p.OutTime >= startTime && p.CreatedAt <= endTime);
 
                 if (materialCheckbox1.Checked == false)
-                    query.Where(p => p.CreatedBy == (ulong)user_id).ToList();
+                    query.Where(p => p.CreatedBy ==  user_id).ToList();
 
 
                 List<Parking> parkings = query.ToList();

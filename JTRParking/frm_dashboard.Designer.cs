@@ -41,7 +41,7 @@ namespace JTRParking
             groupBox_find_vehicle = new GroupBox();
             txt_barcode = new MaterialTextBox2();
             groupBox_add_parking = new GroupBox();
-            parking1 = new Components.ParkingComponent();
+            parking1 = new JTRParking.Components.ParkingComponent();
             groupBox_manage_parking = new GroupBox();
             materialButton3 = new MaterialButton();
             myListView = new ListView();

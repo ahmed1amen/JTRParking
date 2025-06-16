@@ -116,19 +116,20 @@ namespace JTRParking
         {
             using (var context = new JTRDbContext())
             {
-
-                if (MessageBox.Show("are you sure to Delete this user: " + txt_name.Text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                var userToDelete = context.Users.FirstOrDefault(u => u.Id == ulong.Parse(txt_id.Text));
+                if (userToDelete == null)
                 {
-
-
-                    UserCrud(context.Users.FirstOrDefault(u => u.Id == int.Parse(txt_id.Text)), CRUD_OPERATION.DELETE);
-
-                    MessageBox.Show("user successfully Deleted", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    refreshData();
+                    MessageBox.Show("User not found. Unable to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
+                if (MessageBox.Show("Are you sure to delete this user: " + txt_name.Text, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    UserCrud(userToDelete, CRUD_OPERATION.DELETE);
+                    MessageBox.Show("User successfully deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    refreshData();
+                }
             }
-
         }
 
         private void listViewUsers_SelectedIndexChanged(object sender, EventArgs e)
@@ -149,7 +150,7 @@ namespace JTRParking
 
                 materialComboBox2.SelectedItem = userRole;
 
-                SelectedUser.Id = int.Parse(selectedItem.SubItems[0].Text);
+                SelectedUser.Id = ulong.Parse(selectedItem.SubItems[0].Text);
                 SelectedUser.Name = selectedItem.SubItems[1].Text;
                 SelectedUser.Username = selectedItem.SubItems[2].Text;
                 SelectedUser.Password = selectedItem.SubItems[3].Text;

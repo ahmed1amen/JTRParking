@@ -14,6 +14,7 @@ namespace JTRParking.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Parking> Parkings { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
 
         public JTRDbContext() { }
         public JTRDbContext(DbContextOptions<JTRDbContext> options) : base(options)
@@ -40,8 +41,33 @@ namespace JTRParking.Database
 
             );
 
+            modelBuilder.Entity<Shift>().HasData(
+                new Shift
+                {
+                    Id = 1,
+                    Name = "Morning Shift",
+                    StartTime = new TimeSpan(8, 0, 0),
+                    EndTime = new TimeSpan(16, 0, 0),
+                    UserId = 2,
+                    Status = ShiftStatus.OPEN
+                },
+                new Shift
+                {
+                    Id = 2,
+                    Name = "Evening Shift",
+                    StartTime = new TimeSpan(16, 0, 0),
+                    EndTime = new TimeSpan(23, 59, 0),
+                    UserId = 3,
+                    Status = ShiftStatus.CLOSED,
+                }
+            );
 
 
+            modelBuilder.Entity<Parking>()
+            .HasOne(p => p.Shift)
+            .WithMany()
+            .HasForeignKey(p => p.ShiftId)
+            .IsRequired(false);
 
             modelBuilder.Entity<Parking>().HasData(
 
@@ -53,8 +79,9 @@ namespace JTRParking.Database
                     DriverMobile = "+15485949548",
                     Barcode = DateTime.Now.ToString("yyyyMMddHHmmss") + 1,
                     InTime = DateTime.Now,
-                    Amount = 0,
+                    Amount = 100,
                     Status = Models.Parking.ParkingStatus.PENDING,
+                    ShiftId = 1,
                     CreatedBy = 1,
                     CreatedAt = DateTime.Now,
                 },
@@ -66,12 +93,15 @@ namespace JTRParking.Database
                     DriverMobile = "+164598756",
                     Barcode = DateTime.Now.AddHours(5).ToString("yyyyMMddHHmmss") + 1,
                     InTime = DateTime.Now.AddHours(5),
-                    Amount = 0,
+                    Amount = 200,
                     Status = Models.Parking.ParkingStatus.PENDING,
+                    ShiftId = 1,
                     CreatedBy = 1,
                     CreatedAt = DateTime.Now,
                 });
 
+
+         
         }
 
 
