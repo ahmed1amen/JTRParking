@@ -28,11 +28,10 @@ namespace JTRParking.Models
         public decimal Amount { get; set; }
         public ParkingStatus Status { get; set; }
 
-        public ulong? ShiftId { get; set; }
-        public virtual Shift? Shift { get; set; }
-
         public ulong CreatedBy { get; set; }
         public ulong? ModifiedBy { get; set; }
+       public ulong? ShiftId { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         [ForeignKey("CreatedBy")]
@@ -40,6 +39,9 @@ namespace JTRParking.Models
 
         [ForeignKey("ModifiedBy")]
         public virtual User? Modifier { get; set; }
+
+        [ForeignKey("ShiftId")]
+        public virtual Shift? Shift { get; set; }
     }
 }
 

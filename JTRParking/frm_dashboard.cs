@@ -57,8 +57,9 @@ namespace JTRParking
 
             if (AppSingleton.Instance.current_user.Role == (Models.User.UserRole.EMPLOYEE_OUT | Models.User.UserRole.ADMIN))
                 timer3.Start();
-            //pictureBox1.BackgroundImage = Image.FromStream(img.Encode().AsStream());
 
+            if (AppSingleton.Instance.current_user.Role == Models.User.UserRole.ADMIN)
+                btn_end_my_shift.Hide();
 
 
         }
@@ -474,6 +475,15 @@ namespace JTRParking
         private void myListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_end_my_shift_Click(object sender, EventArgs e)
+        {
+            frm_shift_control shiftControl = new frm_shift_control();
+            shiftControl.lbl_message.Text = "End Your Shift.";
+            shiftControl.btnStartShift.Text = "End My Shift";
+            this.Hide();
+            shiftControl.Show();
         }
     }
 

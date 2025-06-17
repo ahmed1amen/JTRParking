@@ -10,8 +10,8 @@ namespace JTRParking
         {
  
             ApplicationConfiguration.Initialize();
-            //Application.Run(new frm_login());
-            //Application.Run(new frm_reports());
+           //Application.Run(new frm_login());
+            Application.Run(new frm_reports());
         }
     }
 }

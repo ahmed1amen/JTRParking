@@ -30,8 +30,8 @@
         {
             btnStartShift = new MaterialSkin.Controls.MaterialButton();
             timePickerShift = new DateTimePicker();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
-            dateTimePicker1 = new DateTimePicker();
+            lbl_message = new MaterialSkin.Controls.MaterialLabel();
+            lbl_timenow = new LinkLabel();
             SuspendLayout();
             // 
             // btnStartShift
@@ -42,14 +42,14 @@
             btnStartShift.Depth = 0;
             btnStartShift.HighEmphasis = true;
             btnStartShift.Icon = null;
-            btnStartShift.Location = new Point(95, 124);
+            btnStartShift.Location = new Point(188, 286);
             btnStartShift.Margin = new Padding(4, 6, 4, 6);
             btnStartShift.MouseState = MaterialSkin.MouseState.HOVER;
             btnStartShift.Name = "btnStartShift";
             btnStartShift.NoAccentTextColor = Color.Empty;
-            btnStartShift.Size = new Size(150, 36);
+            btnStartShift.Size = new Size(282, 58);
             btnStartShift.TabIndex = 0;
-            btnStartShift.Text = "Start Shift";
+            btnStartShift.Text = "Start My Shift";
             btnStartShift.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnStartShift.UseAccentColor = false;
             btnStartShift.UseVisualStyleBackColor = true;
@@ -57,69 +57,73 @@
             // 
             // timePickerShift
             // 
+            timePickerShift.CalendarFont = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            timePickerShift.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             timePickerShift.Format = DateTimePickerFormat.Time;
-            timePickerShift.Location = new Point(283, 129);
+            timePickerShift.Location = new Point(161, 238);
             timePickerShift.Name = "timePickerShift";
             timePickerShift.ShowUpDown = true;
-            timePickerShift.Size = new Size(150, 23);
+            timePickerShift.Size = new Size(244, 39);
             timePickerShift.TabIndex = 1;
             // 
-            // materialButton1
+            // lbl_message
             // 
-            materialButton1.AutoSize = false;
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(95, 187);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(150, 36);
-            materialButton1.TabIndex = 2;
-            materialButton1.Text = "End Shift";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
+            lbl_message.Depth = 0;
+            lbl_message.Dock = DockStyle.Top;
+            lbl_message.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lbl_message.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lbl_message.HighEmphasis = true;
+            lbl_message.Location = new Point(3, 64);
+            lbl_message.Margin = new Padding(2, 0, 2, 0);
+            lbl_message.MouseState = MaterialSkin.MouseState.HOVER;
+            lbl_message.Name = "lbl_message";
+            lbl_message.Size = new Size(613, 153);
+            lbl_message.TabIndex = 7;
+            lbl_message.Text = "Message";
+            lbl_message.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // dateTimePicker1
+            // lbl_timenow
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Time;
-            dateTimePicker1.Location = new Point(283, 192);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.ShowUpDown = true;
-            dateTimePicker1.Size = new Size(150, 23);
-            dateTimePicker1.TabIndex = 3;
+            lbl_timenow.AutoSize = true;
+            lbl_timenow.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_timenow.Location = new Point(413, 245);
+            lbl_timenow.Name = "lbl_timenow";
+            lbl_timenow.Size = new Size(97, 25);
+            lbl_timenow.TabIndex = 8;
+            lbl_timenow.TabStop = true;
+            lbl_timenow.Text = "Time Now";
+            lbl_timenow.LinkClicked += lbl_timenow_LinkClicked;
             // 
             // frm_shift_control
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(517, 275);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(materialButton1);
+            ClientSize = new Size(619, 362);
+            Controls.Add(lbl_timenow);
+            Controls.Add(lbl_message);
             Controls.Add(timePickerShift);
             Controls.Add(btnStartShift);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frm_shift_control";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            Sizable = false;
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Shift Control";
             TopMost = true;
             Load += frm_shift_control_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
-
-        private MaterialSkin.Controls.MaterialButton btnStartShift;
         private System.Windows.Forms.DateTimePicker timePickerShift;
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private DateTimePicker dateTimePicker1;
+        public MaterialSkin.Controls.MaterialLabel lbl_message;
+        private LinkLabel lbl_timenow;
+        public MaterialSkin.Controls.MaterialButton btnStartShift;
     }
 }

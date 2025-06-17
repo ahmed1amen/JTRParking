@@ -95,7 +95,7 @@ namespace JTRParking.Database
                     InTime = DateTime.Now.AddHours(5),
                     Amount = 200,
                     Status = Models.Parking.ParkingStatus.PENDING,
-                    ShiftId = 1,
+                    ShiftId = 2,
                     CreatedBy = 1,
                     CreatedAt = DateTime.Now,
                 });

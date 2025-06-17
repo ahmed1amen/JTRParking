@@ -1,15 +1,9 @@
 ﻿using JTRParking.Database;
 using JTRParking.Models;
 using MaterialSkin.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using User = JTRParking.Models.User;
 
 namespace JTRParking
 {
@@ -39,11 +33,11 @@ namespace JTRParking
 
         private void frm_reports_Load(object sender, EventArgs e)
         {
-
             using (var context = new JTRDbContext())
             {
-                comboBox1.DataSource = context.Users.ToList();
-                comboBox1.DisplayMember = "name";
+                comboBoxUsers.DataSource = context.Users.ToList();
+                comboBoxUsers.DisplayMember = "Name";
+
             }
 
 
@@ -67,10 +61,10 @@ namespace JTRParking
             DateTime endTime = dateTimePickerEnd.Value;
             User selectedUser;
             ulong user_id = 0;
-            if (comboBox1.SelectedItem != null && materialCheckbox1.Checked == false)
+            if (comboBoxUsers.SelectedItem != null && materialCheckbox1.Checked == false)
             {
 
-                selectedUser = (User)comboBox1.SelectedItem;
+                selectedUser = (User)comboBoxUsers.SelectedItem;
                 user_id = selectedUser.Id;
 
                 // Use the selected user as needed
@@ -80,19 +74,21 @@ namespace JTRParking
             // var parkingsWithinTimeRange = parkings.Where(p => p.CreatedAt >= startTime && p.CreatedAt <= endTime).ToList();
             using (var context = new JTRDbContext())
             {
-                IQueryable<Parking> query = context.Parkings
-                     .Where(p => p.OutTime >= startTime && p.CreatedAt <= endTime);
+                IQueryable<Parking> query = context.Parkings;
+                //  .Where(p => p.OutTime >= startTime && p.CreatedAt <= endTime);
 
                 if (materialCheckbox1.Checked == false)
-                    query.Where(p => p.CreatedBy ==  user_id).ToList();
+                    query.Where(p => p.CreatedBy == user_id).ToList();
 
 
                 List<Parking> parkings = query.ToList();
                 if (parkings.Count != 0)
                 {
-                    lbl_motor_count.Text = " Tota Car : " + parkings.Where(p => p.VehicleType == "Car").Count().ToString();
-                    lbl_car_count.Text = " Tota Motor : " + parkings.Where(p => p.VehicleType == "Motor").Count().ToString();
-                    lbl_total_amount.Text = " Total Amount : " + parkings.Sum(p => p.Amount);
+                    lbl_stats.Text =
+                        $"  Total C.A For Today: {context.Parkings.Where(p => p.CreatedAt == DateTime.Now.Date).ToList().Sum(p => p.Amount)} \n"+
+                        $"  Tota Car : {parkings.Where(p => p.VehicleType == "Car").Count()} \n" +
+                        $"  Tota Motor: {parkings.Where(p => p.VehicleType == "Motor").Count()} \n" +
+                        $"  Total Amount: {parkings.Sum(p => p.Amount)} \n";
                 }
                 else
                     MessageBox.Show("Not Found!", "Results", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -104,7 +100,55 @@ namespace JTRParking
 
         private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
         {
-            comboBox1.Enabled = !materialCheckbox1.Checked;
+            comboBoxUsers.Enabled = !materialCheckbox1.Checked;
+        }
+
+        private void comboBoxShifts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxShifts.SelectedItem != null)
+            {
+                var selectedObj = comboBoxShifts.SelectedItem;
+                var type = selectedObj.GetType();
+                var shiftProp = type.GetProperty("Shift");
+                if (shiftProp != null)
+                {
+                    var shiftValue = shiftProp.GetValue(selectedObj);
+                    if (shiftValue is Shift selectedShift && selectedShift != null)
+                    {
+                        label6.Text = $"CreatedAt : {selectedShift.CreatedAt:dd/MM/yyyy} Start : {selectedShift.StartTime:hh\\:mm\\:ss} - End : {selectedShift.EndTime:hh\\:mm\\:ss}";
+                    }
+                }
+                else if (selectedObj is Shift selectedShift && selectedShift != null)
+                {
+                    label6.Text = $"CreatedAt : {selectedShift.CreatedAt:dd/MM/yyyy} Start : {selectedShift.StartTime:hh\\:mm\\:ss} - End : {selectedShift.EndTime:hh\\:mm\\:ss}";
+                }
+            }
+        }
+
+        private void comboBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var context = new JTRDbContext())
+            {
+                if (comboBoxUsers.SelectedItem != null && materialCheckbox1.Checked == false)
+                {
+                    User selectedUser = (User)comboBoxUsers.SelectedItem;
+                    DateTime startTime = dateTimePickerStart.Value;
+                    DateTime endTime = dateTimePickerEnd.Value;
+                    var shifts = context.Shifts
+                        .Where(s => s.UserId == selectedUser.Id && s.CreatedAt >= startTime && s.CreatedAt <= endTime)
+                        .ToList();
+                    var displayList = shifts.Select(s => new
+                    {
+                        Shift = s,
+                        DisplayText = $"{s.CreatedAt:dd/MM/yyyy} - {s.Name}"
+                    }).ToList();
+                    comboBoxShifts.DataSource = displayList;
+                    comboBoxShifts.DisplayMember = "DisplayText";
+                    comboBoxShifts.ValueMember = "Shift";
+                    comboBoxShifts.Refresh();
+                }
+            }
         }
     }
+
 }

@@ -43,6 +43,7 @@ namespace JTRParking
             groupBox_add_parking = new GroupBox();
             parking1 = new JTRParking.Components.ParkingComponent();
             groupBox_manage_parking = new GroupBox();
+            btn_end_my_shift = new MaterialButton();
             materialButton3 = new MaterialButton();
             myListView = new ListView();
             contextMenuStrip1 = new MaterialContextMenuStrip();
@@ -265,6 +266,7 @@ namespace JTRParking
             // groupBox_manage_parking
             // 
             groupBox_manage_parking.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox_manage_parking.Controls.Add(btn_end_my_shift);
             groupBox_manage_parking.Controls.Add(materialButton3);
             groupBox_manage_parking.Controls.Add(myListView);
             groupBox_manage_parking.Location = new Point(465, 105);
@@ -276,6 +278,31 @@ namespace JTRParking
             groupBox_manage_parking.TabStop = false;
             groupBox_manage_parking.Text = "Manage Parking";
             // 
+            // btn_end_my_shift
+            // 
+            btn_end_my_shift.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btn_end_my_shift.AutoSize = false;
+            btn_end_my_shift.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btn_end_my_shift.BackColor = SystemColors.Control;
+            btn_end_my_shift.Density = MaterialButton.MaterialButtonDensity.Default;
+            btn_end_my_shift.Depth = 0;
+            btn_end_my_shift.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btn_end_my_shift.ForeColor = SystemColors.ControlText;
+            btn_end_my_shift.HighEmphasis = true;
+            btn_end_my_shift.Icon = null;
+            btn_end_my_shift.Location = new Point(6, 495);
+            btn_end_my_shift.Margin = new Padding(3, 5, 3, 5);
+            btn_end_my_shift.MouseState = MaterialSkin.MouseState.HOVER;
+            btn_end_my_shift.Name = "btn_end_my_shift";
+            btn_end_my_shift.NoAccentTextColor = Color.Empty;
+            btn_end_my_shift.Size = new Size(112, 38);
+            btn_end_my_shift.TabIndex = 26;
+            btn_end_my_shift.Text = "End My Shift";
+            btn_end_my_shift.Type = MaterialButton.MaterialButtonType.Contained;
+            btn_end_my_shift.UseAccentColor = true;
+            btn_end_my_shift.UseVisualStyleBackColor = false;
+            btn_end_my_shift.Click += btn_end_my_shift_Click;
+            // 
             // materialButton3
             // 
             materialButton3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -284,7 +311,7 @@ namespace JTRParking
             materialButton3.BackColor = SystemColors.Control;
             materialButton3.Density = MaterialButton.MaterialButtonDensity.Default;
             materialButton3.Depth = 0;
-            materialButton3.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton3.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialButton3.ForeColor = SystemColors.ControlText;
             materialButton3.HighEmphasis = true;
             materialButton3.Icon = null;
@@ -436,7 +463,7 @@ namespace JTRParking
             materialButton2.BackColor = SystemColors.Control;
             materialButton2.Density = MaterialButton.MaterialButtonDensity.Default;
             materialButton2.Depth = 0;
-            materialButton2.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton2.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialButton2.ForeColor = SystemColors.ControlText;
             materialButton2.HighEmphasis = true;
             materialButton2.Icon = null;
@@ -564,7 +591,7 @@ namespace JTRParking
             materialButton4.BackColor = SystemColors.Control;
             materialButton4.Density = MaterialButton.MaterialButtonDensity.Default;
             materialButton4.Depth = 0;
-            materialButton4.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton4.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialButton4.ForeColor = SystemColors.ControlText;
             materialButton4.HighEmphasis = true;
             materialButton4.Icon = null;
@@ -616,7 +643,7 @@ namespace JTRParking
             materialExpansionPanel2.Depth = 0;
             materialExpansionPanel2.Description = "";
             materialExpansionPanel2.ExpandHeight = 547;
-            materialExpansionPanel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel2.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialExpansionPanel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialExpansionPanel2.Location = new Point(776, 14);
             materialExpansionPanel2.Margin = new Padding(13);
@@ -636,7 +663,7 @@ namespace JTRParking
             materialButton1.BackColor = SystemColors.Control;
             materialButton1.Density = MaterialButton.MaterialButtonDensity.Default;
             materialButton1.Depth = 0;
-            materialButton1.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialButton1.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialButton1.ForeColor = SystemColors.ControlText;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
@@ -673,7 +700,7 @@ namespace JTRParking
             materialExpansionPanel1.Depth = 0;
             materialExpansionPanel1.Description = "";
             materialExpansionPanel1.ExpandHeight = 539;
-            materialExpansionPanel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialExpansionPanel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialExpansionPanel1.Location = new Point(11, 34);
             materialExpansionPanel1.Margin = new Padding(16);
@@ -703,7 +730,7 @@ namespace JTRParking
             txt_allowed_minutes.BackgroundImageLayout = ImageLayout.None;
             txt_allowed_minutes.CharacterCasing = CharacterCasing.Normal;
             txt_allowed_minutes.Depth = 0;
-            txt_allowed_minutes.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_allowed_minutes.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_allowed_minutes.HideSelection = true;
             txt_allowed_minutes.LeadingIcon = null;
             txt_allowed_minutes.Location = new Point(177, 154);
@@ -732,7 +759,7 @@ namespace JTRParking
             txt_settings_parking_ticket_header_sub_title.BackgroundImageLayout = ImageLayout.None;
             txt_settings_parking_ticket_header_sub_title.CharacterCasing = CharacterCasing.Normal;
             txt_settings_parking_ticket_header_sub_title.Depth = 0;
-            txt_settings_parking_ticket_header_sub_title.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_settings_parking_ticket_header_sub_title.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_parking_ticket_header_sub_title.HideSelection = true;
             txt_settings_parking_ticket_header_sub_title.Location = new Point(177, 323);
             txt_settings_parking_ticket_header_sub_title.Margin = new Padding(2);
@@ -780,7 +807,7 @@ namespace JTRParking
             txt_settings_parking_ticket_header_title.BackgroundImageLayout = ImageLayout.None;
             txt_settings_parking_ticket_header_title.CharacterCasing = CharacterCasing.Normal;
             txt_settings_parking_ticket_header_title.Depth = 0;
-            txt_settings_parking_ticket_header_title.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_settings_parking_ticket_header_title.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_parking_ticket_header_title.HideSelection = true;
             txt_settings_parking_ticket_header_title.LeadingIcon = null;
             txt_settings_parking_ticket_header_title.Location = new Point(178, 265);
@@ -821,7 +848,7 @@ namespace JTRParking
             btn_update_settings.BackColor = SystemColors.Control;
             btn_update_settings.Density = MaterialButton.MaterialButtonDensity.Default;
             btn_update_settings.Depth = 0;
-            btn_update_settings.Font = new Font("Roboto", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
+            btn_update_settings.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             btn_update_settings.ForeColor = SystemColors.ControlText;
             btn_update_settings.HighEmphasis = true;
             btn_update_settings.Icon = null;
@@ -844,7 +871,7 @@ namespace JTRParking
             txt_settings_currency_symbol.BackgroundImageLayout = ImageLayout.None;
             txt_settings_currency_symbol.CharacterCasing = CharacterCasing.Normal;
             txt_settings_currency_symbol.Depth = 0;
-            txt_settings_currency_symbol.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_settings_currency_symbol.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_currency_symbol.HideSelection = true;
             txt_settings_currency_symbol.LeadingIcon = null;
             txt_settings_currency_symbol.Location = new Point(178, 206);
@@ -873,7 +900,7 @@ namespace JTRParking
             txt_settings_first_hour_rate.BackgroundImageLayout = ImageLayout.None;
             txt_settings_first_hour_rate.CharacterCasing = CharacterCasing.Normal;
             txt_settings_first_hour_rate.Depth = 0;
-            txt_settings_first_hour_rate.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_settings_first_hour_rate.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_first_hour_rate.HideSelection = true;
             txt_settings_first_hour_rate.LeadingIcon = null;
             txt_settings_first_hour_rate.Location = new Point(178, 41);
@@ -925,7 +952,7 @@ namespace JTRParking
             txt_settings_hourly_rate.BackgroundImageLayout = ImageLayout.None;
             txt_settings_hourly_rate.CharacterCasing = CharacterCasing.Normal;
             txt_settings_hourly_rate.Depth = 0;
-            txt_settings_hourly_rate.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txt_settings_hourly_rate.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txt_settings_hourly_rate.HideSelection = true;
             txt_settings_hourly_rate.LeadingIcon = null;
             txt_settings_hourly_rate.Location = new Point(178, 100);
@@ -1071,6 +1098,7 @@ namespace JTRParking
         private DateTimePicker dateTimePickerEnd;
         private Label label7;
         private Label label8;
+        private MaterialButton btn_end_my_shift;
     }
 }
 
